@@ -10,10 +10,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/contribute" element={<Contribute />} />
-      <Route path="/not-found" element={<NotFound />} />
-      <Route render={() => <Navigate to="/not-found" />} />
+      <Route path="login" element={<Login />} />
+      <Route path="contribute" element={<Contribute />} />
+      <Route path="not-found" element={<NotFound />} />
+      <Route render={() => <Navigate to="not-found" />} />
     </Routes>
   );
 }
