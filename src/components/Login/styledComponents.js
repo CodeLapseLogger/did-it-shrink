@@ -4,8 +4,10 @@ export const LoginBgContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   min-height: 100vh;
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 `;
@@ -13,27 +15,45 @@ export const LoginBgContainer = styled.div`
 export const LoginContentContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: stretch;
   border-radius: 1rem;
+  /* border: 0.1rem solid #959290; */
+  box-shadow: 0 0 0.5rem 0 #959290;
   min-height: 50vh;
   height: 50%;
+  width: 80%;
+  align-self: center;
+  padding: 0;
 `;
 
 export const LoginBrandContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
+  width: 55%;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  background-image: linear-gradient(to bottom, #f4b991, #b9b7b2);
+  background-size: cover;
+  margin: 0;
 `;
 
 export const LoginFormContentContainer = styled(LoginBrandContentContainer)`
   align-items: center;
+  width: 45%;
+  background-image: none;
+  background-color: #ffffff;
+  border-radius: 0 1rem 1rem 0;
+  flex-grow: 0;
 `;
 
 export const BrandName = styled.h1`
   color: #f47622;
   font-family: "Kalam";
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
+  margin-bottom: 0;
 `;
 
 export const BrandNamePartial = styled(BrandName)`
@@ -49,7 +69,8 @@ export const GreyTextBig = styled.p`
 `;
 
 export const GreyTextMedium = styled(GreyTextBig)`
-  font-size: 1.2rem;
+  font-size: ${(props) => (props.isLabel ? "1.2rem" : "1.5rem")};
+  color: ${(props) => (props.isLabel ? "#5e5c5b" : "#ffffff")};
   margin-bottom: 0.5rem;
 `;
 
@@ -58,6 +79,7 @@ export const LoginFormContainer = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 export const LoginFormHeader = styled(GreyTextBig)`
@@ -71,40 +93,56 @@ export const LoginFormInputsContainer = styled.ul`
 `;
 
 export const LoginFormSingleInputContainer = styled.li`
-  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 1rem 0;
+  width: 100%;
 `;
 
 export const LoginFormInput = styled.input`
   outline: none;
-  border: 0.1rem solid #87807c;
+  border: 0.1rem solid #d0cecc;
   border-radius: 0.4rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   color: #3d3a38;
+  width: 85%;
+  font-family: "Montserrat";
+  font-size: 1.1rem;
+  color: #7f7d7a;
 `;
 
 export const LoginFormButton = styled.button`
   color: ${(props) => (props.isOutline ? "#eacd3c" : "#ffffff")};
   background-color: ${(props) => (props.isOutline ? "#ffffff" : "#eacd3c")};
-  border: 0.1rem solid #eacd3c;
-  padding: 0.75rem 1.25rem;
+  /* border: 0.1rem solid #eacd3c; */
+  border: none;
+  padding: ${(props) => (props.isOutline ? "0" : "0.75rem 1.5rem")};
   outline: none;
   cursor: pointer;
   font-family: "Montserrat";
   font-size: 1.2rem;
   font-weight: 600;
+  margin: ${(props) => (props.isOutline ? "0 0 0.5rem 0" : "0 0 0.25rem 0")};
+  align-self: ${(props) => (props.isOutline ? "none" : "center")};
 `;
 
 export const LoginFormHorizontalLine = styled.hr`
   width: 100%;
   border: none;
-  border-top: 0.1rem solid #3d3c3b;
+  border-top: 0.1rem solid #696868;
 `;
 
 export const SignupContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 0;
 `;
 
 export const SignupMessage = styled(GreyTextMedium)`
+  margin-top: 0;
   margin-right: 1rem;
+  font-size: 1.2rem;
+  color: #5e5c5b;
 `;

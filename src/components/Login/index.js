@@ -66,7 +66,7 @@ const Login = (props) => {
       <LoginContentContainer>
         <LoginBrandContentContainer>
           <BrandName>
-            Did It <BrandNamePartial>Shrink</BrandNamePartial>
+            Did It <BrandNamePartial as="span">Shrink</BrandNamePartial>
           </BrandName>
           <GreyTextBig>
             A crowdsourcing platform for product data and discovering trends
@@ -74,7 +74,7 @@ const Login = (props) => {
           </GreyTextBig>
           <br />
           <GreyTextMedium>
-            Contribute to and leverage the collective effort.
+            Join to contribute and leverage the collective effort.
           </GreyTextMedium>
         </LoginBrandContentContainer>
 
@@ -84,7 +84,7 @@ const Login = (props) => {
             <LoginFormInputsContainer>
               {!isLogin && (
                 <LoginFormSingleInputContainer>
-                  <GreyTextMedium as="label" htmlFor="userName">
+                  <GreyTextMedium as="label" htmlFor="userName" isLabel>
                     Username
                   </GreyTextMedium>
                   <LoginFormInput
@@ -92,12 +92,13 @@ const Login = (props) => {
                     type="text"
                     name="userName"
                     value={formUserInput.userName}
+                    placeholder="Type in username..."
                     onChange={onFormUserInputChange}
                   />
                 </LoginFormSingleInputContainer>
               )}
               <LoginFormSingleInputContainer>
-                <GreyTextMedium as="label" htmlFor="userEmail">
+                <GreyTextMedium as="label" htmlFor="userEmail" isLabel>
                   Email
                 </GreyTextMedium>
                 <LoginFormInput
@@ -105,12 +106,13 @@ const Login = (props) => {
                   type="email"
                   name="userEmail"
                   value={formUserInput.userEmail}
+                  placeholder="Enter your valid email address"
                   onChange={onFormUserInputChange}
                 />
               </LoginFormSingleInputContainer>
 
               <LoginFormSingleInputContainer>
-                <GreyTextMedium as="label" htmlFor="userPassword">
+                <GreyTextMedium as="label" htmlFor="userPassword" isLabel>
                   Password
                 </GreyTextMedium>
                 <LoginFormInput
@@ -118,23 +120,24 @@ const Login = (props) => {
                   type="password"
                   name="userPassword"
                   value={formUserInput.userPassword}
+                  placeholder="Choose a strong password"
                   onChange={onFormUserInputChange}
                 />
               </LoginFormSingleInputContainer>
-
-              <LoginFormButton type="submit">Submit</LoginFormButton>
-
-              <LoginFormHorizontalLine />
-
-              <SignupContainer>
-                <SignupMessage>
-                  {isLogin ? "New user ?" : "Already signed up ?"}
-                </SignupMessage>
-                <LoginFormButton isOutline onClick={toggleSignup}>
-                  {isLogin ? "Signup" : "Login"}
-                </LoginFormButton>
-              </SignupContainer>
             </LoginFormInputsContainer>
+
+            <LoginFormButton type="submit">Submit</LoginFormButton>
+
+            <LoginFormHorizontalLine />
+
+            <SignupContainer>
+              <SignupMessage>
+                {isLogin ? "New user ?" : "Already signed up ?"}
+              </SignupMessage>
+              <LoginFormButton type="button" onClick={toggleSignup} isOutline>
+                {isLogin ? "Signup" : "Login"}
+              </LoginFormButton>
+            </SignupContainer>
           </LoginFormContainer>
         </LoginFormContentContainer>
       </LoginContentContainer>
