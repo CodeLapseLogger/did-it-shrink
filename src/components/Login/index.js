@@ -53,7 +53,11 @@ const Login = (props) => {
       (previousShowPasswordState) => !previousShowPasswordState
     );
 
-  const onFormSubmit = () => {};
+  const onFormSubmit = (formSubmitEvent) => {
+    formSubmitEvent.preventDefault();
+    console.log(formUserInput);
+  };
+
   const toggleSignup = () =>
     setIsLogin((previousIsLoginState) => !previousIsLoginState);
 
