@@ -1,4 +1,4 @@
-import { Client, Account } from "appwrite";
+import { Client, Account, ID } from "appwrite";
 import AppwriteBackend from "../utils/AppwriteBackend";
 
 const client = new Client();
@@ -14,7 +14,12 @@ export const userSignup = async (userData) => {
   let signupResponse = null;
 
   try {
-    signupResponse = await account.create(userName, userEmail, userPassword);
+    signupResponse = await account.create(
+      ID.unique(),
+      userEmail,
+      userPassword,
+      userName
+    );
   } catch (signupError) {
     signupResponse = signupError;
   }
