@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+import { IconContext } from "react-icons";
+import { BsFillEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 import {
   BrandName,
   BrandNamePartial,
@@ -16,8 +17,10 @@ import {
   LoginFormInput,
   LoginFormInputsContainer,
   LoginFormSingleInputContainer,
+  PasswordContainer,
   SignupContainer,
   SignupMessage,
+  ToggleShowPasswordButton,
 } from "./styledComponents";
 
 const Login = (props) => {
@@ -115,14 +118,37 @@ const Login = (props) => {
                 <GreyTextMedium as="label" htmlFor="userPassword" isLabel>
                   Password
                 </GreyTextMedium>
-                <LoginFormInput
-                  id="userPassword"
-                  type="password"
-                  name="userPassword"
-                  value={formUserInput.userPassword}
-                  placeholder="Choose a strong password"
-                  onChange={onFormUserInputChange}
-                />
+                <PasswordContainer>
+                  <LoginFormInput
+                    id="userPassword"
+                    type={showPassword ? "text" : "password"}
+                    name="userPassword"
+                    value={formUserInput.userPassword}
+                    placeholder="Choose a strong password"
+                    onChange={onFormUserInputChange}
+                    isTypePassword
+                  />
+                  <ToggleShowPasswordButton
+                    type="button"
+                    onClick={onToggleShowPassword}
+                  >
+                    <IconContext.Provider
+                      value={{
+                        style: {
+                          height: "1.5rem",
+                          width: "1.5rem",
+                          color: "#3d3a38",
+                        },
+                      }}
+                    >
+                      {showPassword ? (
+                        <BsFillEyeFill />
+                      ) : (
+                        <BsFillEyeSlashFill />
+                      )}
+                    </IconContext.Provider>
+                  </ToggleShowPasswordButton>
+                </PasswordContainer>
               </LoginFormSingleInputContainer>
             </LoginFormInputsContainer>
 

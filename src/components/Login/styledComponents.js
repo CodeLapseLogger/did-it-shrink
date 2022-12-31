@@ -103,14 +103,32 @@ export const LoginFormSingleInputContainer = styled.li`
 
 export const LoginFormInput = styled.input`
   outline: none;
-  border: 0.1rem solid #d0cecc;
+  border: ${(props) =>
+    props.isTypePassword ? "none" : "0.1rem solid #d0cecc"};
   border-radius: 0.4rem;
   padding: 1rem;
   color: #3d3a38;
-  width: 85%;
+  width: ${(props) => (props.isTypePassword ? "85%" : "90%")};
   font-family: "Montserrat";
   font-size: 1.1rem;
   color: #7f7d7a;
+`;
+
+export const ToggleShowPasswordButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 15%;
+`;
+
+export const PasswordContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.1rem solid #d0cecc;
+  border-radius: 0.4rem;
+  width: 100%;
 `;
 
 export const LoginFormButton = styled.button`
