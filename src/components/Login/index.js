@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { IconContext } from "react-icons";
 import { BsFillEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
+
+import { signup, login } from "../../appwrite-api";
+
 import {
   BrandName,
   BrandNamePartial,
@@ -59,6 +62,16 @@ const Login = (props) => {
   const onFormSubmit = (formSubmitEvent) => {
     formSubmitEvent.preventDefault();
     console.log(formUserInput);
+
+    if (isLogin) {
+      login(formUserInput).then((loginResponse) =>
+        console.log(`Login response: ${loginResponse}`)
+      );
+    } else {
+      signup(formUserInput).then((signupResponse) =>
+        console.log(`Signup response: ${signupResponse}`)
+      );
+    }
   };
 
   const toggleSignup = () =>
