@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IconContext } from "react-icons";
 import { BsFillEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 
-import { signup, login } from "../../appwrite-api";
+import { userSignup, userLogin } from "../../appwrite-api";
 
 import {
   BrandName,
@@ -64,11 +64,11 @@ const Login = (props) => {
     console.log(formUserInput);
 
     if (isLogin) {
-      login(formUserInput).then((loginResponse) =>
+      userLogin(formUserInput).then((loginResponse) =>
         console.log(`Login response: ${loginResponse}`)
       );
     } else {
-      signup(formUserInput).then((signupResponse) =>
+      userSignup(formUserInput).then((signupResponse) =>
         console.log(`Signup response: ${signupResponse}`)
       );
     }
