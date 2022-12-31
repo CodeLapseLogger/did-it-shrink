@@ -1,5 +1,5 @@
 import { Client, Account, ID } from "appwrite";
-import AppwriteBackend from "../utils/AppwriteBackend";
+import { AppwriteBackend } from "../utils/AppwriteBackend";
 
 const client = new Client();
 const account = new Account(client);
