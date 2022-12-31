@@ -65,7 +65,7 @@ export const GreyTextBig = styled.p`
   font-family: "Montserrat";
   font-size: 2rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 `;
 
 export const GreyTextMedium = styled(GreyTextBig)`
@@ -84,6 +84,7 @@ export const LoginFormContainer = styled.form`
 
 export const LoginFormHeader = styled(GreyTextBig)`
   color: #eacd3c;
+  font-size: 2.75rem;
 `;
 
 export const LoginFormInputsContainer = styled.ul`
@@ -134,9 +135,9 @@ export const PasswordContainer = styled.div`
 export const LoginFormButton = styled.button`
   color: ${(props) => (props.isOutline ? "#eacd3c" : "#ffffff")};
   background-color: ${(props) => (props.isOutline ? "#ffffff" : "#eacd3c")};
-  /* border: 0.1rem solid #eacd3c; */
   border: none;
-  padding: ${(props) => (props.isOutline ? "0" : "0.75rem 1.5rem")};
+  border-radius: ${(props) => !props.isOutline && "2rem"};
+  padding: ${(props) => (props.isOutline ? "0" : "1rem 2.5rem")};
   outline: none;
   cursor: pointer;
   font-family: "Montserrat";
@@ -149,7 +150,7 @@ export const LoginFormButton = styled.button`
 export const LoginFormHorizontalLine = styled.hr`
   width: 100%;
   border: none;
-  border-top: 0.1rem solid #696868;
+  border-top: 0.1rem solid #8b8989;
 `;
 
 export const SignupContainer = styled.div`
