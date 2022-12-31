@@ -6,7 +6,7 @@ const account = new Account(client);
 
 const { clientEndpoint, projectId } = AppwriteBackend;
 
-client.setEndPoint(clientEndpoint).setProject(projectId);
+client.setEndpoint(clientEndpoint).setProject(projectId);
 
 export const userSignup = async (userData) => {
   const { userName, userEmail, userPassword } = userData;
