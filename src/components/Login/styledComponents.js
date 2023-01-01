@@ -104,8 +104,9 @@ export const LoginFormSingleInputContainer = styled.li`
 
 export const LoginFormInput = styled.input`
   outline: none;
-  border: ${(props) =>
-    props.isTypePassword ? "none" : "0.1rem solid #d0cecc"};
+  /* border: ${(props) =>
+    props.isTypePassword ? "none" : "0.1rem solid #d0cecc"}; */
+  border: none;
   border-radius: 0.4rem;
   padding: 1rem;
   color: #3d3a38;
@@ -113,6 +114,7 @@ export const LoginFormInput = styled.input`
   font-family: "Montserrat";
   font-size: 1.1rem;
   color: #7f7d7a;
+  flex: auto;
 `;
 
 export const ToggleShowPasswordButton = styled.button`
@@ -121,15 +123,17 @@ export const ToggleShowPasswordButton = styled.button`
   cursor: pointer;
   outline: none;
   width: 15%;
+  flex: auto;
 `;
 
-export const PasswordContainer = styled.div`
+export const UserInputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 0.1rem solid #d0cecc;
   border-radius: 0.4rem;
   width: 100%;
+  flex: auto;
 `;
 
 export const LoginFormButton = styled.button`

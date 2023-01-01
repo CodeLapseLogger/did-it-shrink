@@ -20,7 +20,7 @@ import {
   LoginFormInput,
   LoginFormInputsContainer,
   LoginFormSingleInputContainer,
-  PasswordContainer,
+  UserInputContainer,
   SignupContainer,
   SignupMessage,
   ToggleShowPasswordButton,
@@ -64,13 +64,15 @@ const Login = (props) => {
     console.log(formUserInput);
 
     if (isLogin) {
-      userLogin(formUserInput).then((loginResponse) =>
-        console.log(`Login response: ${loginResponse}`)
-      );
+      userLogin(formUserInput)
+        .then((loginResponse) => loginResponse.json())
+        .then((jsonResponse) => console.log(`Login response: ${jsonResponse}`));
     } else {
-      userSignup(formUserInput).then((signupResponse) =>
-        console.log(`Signup response: ${signupResponse}`)
-      );
+      userSignup(formUserInput)
+        .then((signupResponse) => signupResponse.json())
+        .then((jsonResponse) =>
+          console.log(`Signup response: ${jsonResponse}`)
+        );
     }
   };
 
@@ -103,35 +105,39 @@ const Login = (props) => {
                   <GreyTextMedium as="label" htmlFor="userName" isLabel>
                     Username
                   </GreyTextMedium>
-                  <LoginFormInput
-                    id="userName"
-                    type="text"
-                    name="userName"
-                    value={formUserInput.userName}
-                    placeholder="Type in username..."
-                    onChange={onFormUserInputChange}
-                  />
+                  <UserInputContainer>
+                    <LoginFormInput
+                      id="userName"
+                      type="text"
+                      name="userName"
+                      value={formUserInput.userName}
+                      placeholder="Type in username..."
+                      onChange={onFormUserInputChange}
+                    />
+                  </UserInputContainer>
                 </LoginFormSingleInputContainer>
               )}
               <LoginFormSingleInputContainer>
                 <GreyTextMedium as="label" htmlFor="userEmail" isLabel>
                   Email
                 </GreyTextMedium>
-                <LoginFormInput
-                  id="userEmail"
-                  type="email"
-                  name="userEmail"
-                  value={formUserInput.userEmail}
-                  placeholder="Enter your valid email address"
-                  onChange={onFormUserInputChange}
-                />
+                <UserInputContainer>
+                  <LoginFormInput
+                    id="userEmail"
+                    type="email"
+                    name="userEmail"
+                    value={formUserInput.userEmail}
+                    placeholder="Enter your valid email address"
+                    onChange={onFormUserInputChange}
+                  />
+                </UserInputContainer>
               </LoginFormSingleInputContainer>
 
               <LoginFormSingleInputContainer>
                 <GreyTextMedium as="label" htmlFor="userPassword" isLabel>
                   Password
                 </GreyTextMedium>
-                <PasswordContainer>
+                <UserInputContainer>
                   <LoginFormInput
                     id="userPassword"
                     type={showPassword ? "text" : "password"}
@@ -161,7 +167,7 @@ const Login = (props) => {
                       )}
                     </IconContext.Provider>
                   </ToggleShowPasswordButton>
-                </PasswordContainer>
+                </UserInputContainer>
               </LoginFormSingleInputContainer>
             </LoginFormInputsContainer>
 
