@@ -40,3 +40,15 @@ export const userLogin = async (userCredentials) => {
 
   return loginResponse;
 };
+
+export const userLogout = async () => {
+  let logoutResponse = null;
+
+  try {
+    logoutResponse = await account.deleteSession("current");
+  } catch (logoutError) {
+    logoutResponse = logoutError;
+  }
+
+  return logoutResponse;
+};
