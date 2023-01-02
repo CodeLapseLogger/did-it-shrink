@@ -5,7 +5,7 @@ import { BsFillEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 import Cookies from "js-cookie";
 import { Oval } from "react-loader-spinner";
 
-import { userSignup, userLogin } from "../../appwrite-api";
+import { userSignup, userLogin } from "../../appwrite-api/appwrite-api";
 
 import {
   BrandName,
