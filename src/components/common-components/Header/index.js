@@ -1,3 +1,6 @@
+import { IconContext } from "react-icons";
+import { MdAccountCircle } from "react-icons/md";
+
 import AppContext from "../../../contexts/AppContext";
 
 import {
@@ -43,7 +46,19 @@ const Header = (props) => {
                 type="button"
                 onClick={() => {}}
                 isLightTheme={isLightTheme}
-              ></AccountButton>
+              >
+                <IconContext.Provider
+                  value={{
+                    style: {
+                      height: "2rem",
+                      width: "2rem",
+                      color: "#ffffff",
+                    },
+                  }}
+                >
+                  <MdAccountCircle />
+                </IconContext.Provider>
+              </AccountButton>
             </HeaderMenuAndAccountContainer>
           </HeaderBgContainer>
         );
