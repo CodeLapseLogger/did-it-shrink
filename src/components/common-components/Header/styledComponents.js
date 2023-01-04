@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const HeaderBgContainer = styled.nav`
   display: flex;
@@ -8,13 +8,6 @@ export const HeaderBgContainer = styled.nav`
   width: 100%;
   padding: 1.5rem 2rem;
   background-color: #eacd3c;
-`;
-
-export const BrandNameButton = styled.button`
-  border: none;
-  background: transparent;
-  outline: none;
-  cursor: pointer;
 `;
 
 export const BrandName = styled.h1`
@@ -49,7 +42,7 @@ export const HeaderMenuItem = styled.li`
   flex: auto;
 `;
 
-export const StyledNavigateComponent = styled(Navigate)`
+export const StyledLinkComponent = styled(Link)`
   font-family: "Montserrat";
   font-size: 2rem;
   font-weight: 500;
