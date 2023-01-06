@@ -4,6 +4,7 @@ import "./App.css";
 
 import AppContext from "./contexts/AppContext";
 
+import ProtectedRoute from "./components/higher-order-components/ProtectedRoute";
 import MappedPage from "./components/higher-order-components/MappedPage";
 
 import Login from "./components/Login";
@@ -55,21 +56,24 @@ function App() {
       }}
     >
       <Routes>
-        <Route path="/" element={<MappedPage bodyElement={<Home />} />} />
+        <ProtectedRoute
+          path="/"
+          element={<MappedPage bodyElement={<Home />} />}
+        />
         <Route path="login" element={<Login />} />
-        <Route
+        <ProtectedRoute
           path="contribute"
           element={<MappedPage bodyElement={<Contribute />} />}
         />
-        <Route
+        <ProtectedRoute
           path="leverage"
           element={<MappedPage bodyElement={<Leverage />} />}
         />
-        <Route
+        <ProtectedRoute
           path="resources"
           element={<MappedPage bodyElement={<Resources />} />}
         />
-        <Route
+        <ProtectedRoute
           path="not-found"
           element={<MappedPage bodyElement={<NotFound />} />}
         />
