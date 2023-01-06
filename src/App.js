@@ -9,6 +9,8 @@ import MappedPage from "./components/higher-order-components/MappedPage";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Contribute from "./components/Contribute";
+import Leverage from "./components/Leverage";
+import Resources from "./components/Resources";
 import NotFound from "./components/NotFound";
 
 const navLinkDataList = [
@@ -58,6 +60,14 @@ function App() {
         <Route
           path="contribute"
           element={<MappedPage bodyElement={<Contribute />} />}
+        />
+        <Route
+          path="leverage"
+          element={<MappedPage bodyElement={<Leverage />} />}
+        />
+        <Route
+          path="resources"
+          element={<MappedPage bodyElement={<Resources />} />}
         />
         <Route
           path="not-found"
