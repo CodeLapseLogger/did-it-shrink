@@ -95,7 +95,7 @@ function App() {
             />
           }
         />
-        <Route render={() => <Navigate to="not-found" />} />
+        <Route path="*" element={<Navigate to="not-found" />} />
       </Routes>
     </AppContext.Provider>
   );

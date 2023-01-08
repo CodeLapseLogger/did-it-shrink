@@ -5,7 +5,7 @@ const ProtectedElement = (props) => {
   const jwtCookie = Cookies.get("did-it-shrink-jwt-token");
   const { mappedPage } = props;
   if (jwtCookie === undefined) {
-    return <Navigate to="login" />;
+    return <Navigate to="/login" />;
   }
 
   return mappedPage;
