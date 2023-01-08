@@ -1,11 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { BsFillEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 import Cookies from "js-cookie";
 import { Oval } from "react-loader-spinner";
 
-import { userSignup, userLogin } from "../../appwrite-api/appwrite-api";
+import {
+  userSignup,
+  userLogin,
+  generateJWT,
+} from "../../appwrite-api/appwrite-api";
 
 import {
   BrandName,
@@ -42,6 +46,8 @@ const Login = (props) => {
   const [authStatus, setAuthStatus] = useState("initial");
   const [isInitialLoad, setIsInitialLoad] = useState("true");
   let isUserLoggedIn = useRef(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const authToken = Cookies.get("did-it-shrink-jwt-token");
@@ -93,6 +99,11 @@ const Login = (props) => {
             );
           }
 
+          generateJWT().then((jwtResponse) =>
+            Cookies.set("did-it-shrink-jwt-token", jwtResponse.jwt)
+          );
+
+          navigate("/", { replace: true });
           setAuthStatus("success");
         })
         .catch((loginError) => {
@@ -103,18 +114,9 @@ const Login = (props) => {
       userSignup(formUserInput)
         .then((signupResponse) => {
           console.log(`Signup response: ${signupResponse}`);
-          return userLogin(formUserInput)
-            .then((loginResponse) => {
-              console.log(`Login response: ${loginResponse}`);
-              console.log(
-                `Login response access token: ${loginResponse.providerAccessToken}`
-              );
-              setAuthStatus("success");
-            })
-            .catch((loginError) => {
-              console.log(loginError);
-              setAuthStatus("failure");
-            });
+
+          setAuthStatus("success");
+          setIsLogin(true);
         })
         .catch((signupError) => {
           console.log(signupError);
