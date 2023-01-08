@@ -1,7 +1,7 @@
 import React from "react";
 
 const AppContext = React.createContext({
-  navLinkDataList: [],
+  navLinkData: {},
   selectedNavLinkId: "",
   setSelectedNavLinkId: () => {},
   isLightTheme: true,

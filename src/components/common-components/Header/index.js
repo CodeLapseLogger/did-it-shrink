@@ -18,8 +18,7 @@ const Header = (props) => {
   return (
     <AppContext.Consumer>
       {(appContextData) => {
-        const { navLinkDataList, selectedNavLinkId, isLightTheme } =
-          appContextData;
+        const { navLinkData, selectedNavLinkId, isLightTheme } = appContextData;
 
         return (
           <HeaderBgContainer isLightTheme={isLightTheme}>
@@ -30,7 +29,7 @@ const Header = (props) => {
             </StyledNavigateComponent>
             <HeaderMenuAndAccountContainer>
               <HeaderMenuContainer>
-                {navLinkDataList.map((navLinkDataItem) => (
+                {Object.values(navLinkData).map((navLinkDataItem) => (
                   <HeaderMenuItem
                     key={navLinkDataItem.id}
                     isSelected={navLinkDataItem.id === selectedNavLinkId}

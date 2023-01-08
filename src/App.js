@@ -14,41 +14,39 @@ import Leverage from "./components/Leverage";
 import Resources from "./components/Resources";
 import NotFound from "./components/NotFound";
 
-const navLinkDataList = [
-  {
-    home: {
-      id: "home",
-      name: "Home",
-      navRoute: "/",
-    },
+const navLinkData = {
+  home: {
+    id: "home",
+    name: "Home",
+    navRoute: "/",
   },
-  {
+  contribute: {
     id: "contribute",
     name: "Contribute",
     navRoute: "contribute",
   },
-  {
+  leverage: {
     id: "leverage",
     name: "Leverage",
     navRoute: "leverage",
   },
-  {
+  resources: {
     id: "resources",
     name: "Resources",
     navRoute: "resources",
   },
-];
+};
 
 function App() {
   const [selectedNavLinkId, setSelectedNavLinkId] = useState(
-    navLinkDataList[0].id
+    navLinkData["home"].id
   );
   const [isLightTheme, toggleIsLightTheme] = useState(true);
 
   return (
     <AppContext.Provider
       value={{
-        navLinkDataList,
+        navLinkData,
         selectedNavLinkId,
         setSelectedNavLinkId,
         isLightTheme,
