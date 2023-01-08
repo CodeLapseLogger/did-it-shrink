@@ -99,12 +99,11 @@ const Login = (props) => {
             );
           }
 
-          generateJWT().then((jwtResponse) =>
-            Cookies.set("did-it-shrink-jwt-token", jwtResponse.jwt)
-          );
-
-          navigate("/", { replace: true });
-          setAuthStatus("success");
+          generateJWT().then((jwtResponse) => {
+            Cookies.set("did-it-shrink-jwt-token", jwtResponse.jwt);
+            navigate("/", { replace: true });
+            setAuthStatus("success");
+          });
         })
         .catch((loginError) => {
           console.log(loginError);
