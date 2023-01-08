@@ -4,7 +4,7 @@ import "./App.css";
 
 import AppContext from "./contexts/AppContext";
 
-import ProtectedRoute from "./components/higher-order-components/ProtectedRoute";
+import ProtectedElement from "./components/higher-order-components/ProtectedElement";
 import MappedPage from "./components/higher-order-components/MappedPage";
 
 import Login from "./components/Login";
@@ -54,26 +54,46 @@ function App() {
       }}
     >
       <Routes>
-        <ProtectedRoute
+        <Route
           path="/"
-          element={<MappedPage bodyElement={<Home />} />}
+          element={
+            <ProtectedElement
+              mappedPage={<MappedPage bodyElement={<Home />} />}
+            />
+          }
         />
         <Route path="login" element={<Login />} />
-        <ProtectedRoute
+        <Route
           path="contribute"
-          element={<MappedPage bodyElement={<Contribute />} />}
+          element={
+            <ProtectedElement
+              mappedPage={<MappedPage bodyElement={<Contribute />} />}
+            />
+          }
         />
-        <ProtectedRoute
+        <Route
           path="leverage"
-          element={<MappedPage bodyElement={<Leverage />} />}
+          element={
+            <ProtectedElement
+              mappedPage={<MappedPage bodyElement={<Leverage />} />}
+            />
+          }
         />
-        <ProtectedRoute
+        <Route
           path="resources"
-          element={<MappedPage bodyElement={<Resources />} />}
+          element={
+            <ProtectedElement
+              mappedPage={<MappedPage bodyElement={<Resources />} />}
+            />
+          }
         />
-        <ProtectedRoute
+        <Route
           path="not-found"
-          element={<MappedPage bodyElement={<NotFound />} />}
+          element={
+            <ProtectedElement
+              mappedPage={<MappedPage bodyElement={<NotFound />} />}
+            />
+          }
         />
         <Route render={() => <Navigate to="not-found" />} />
       </Routes>
