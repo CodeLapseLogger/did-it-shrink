@@ -23,17 +23,17 @@ const navLinkData = {
   contribute: {
     id: "contribute",
     name: "Contribute",
-    navRoute: "contribute",
+    navRoute: "/contribute",
   },
   leverage: {
     id: "leverage",
     name: "Leverage",
-    navRoute: "leverage",
+    navRoute: "/leverage",
   },
   resources: {
     id: "resources",
     name: "Resources",
-    navRoute: "resources",
+    navRoute: "/resources",
   },
 };
 
