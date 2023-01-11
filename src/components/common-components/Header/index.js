@@ -11,7 +11,7 @@ import {
   HeaderMenuAndAccountContainer,
   HeaderMenuContainer,
   HeaderMenuItem,
-  StyledNavigateComponent,
+  StyledLinkComponent,
 } from "./styledComponents";
 
 const Header = (props) => {
@@ -22,11 +22,11 @@ const Header = (props) => {
 
         return (
           <HeaderBgContainer isLightTheme={isLightTheme}>
-            <StyledNavigateComponent to="/">
+            <StyledLinkComponent to="/">
               <BrandName>
                 Did It <BrandNamePartial>Shrink</BrandNamePartial>
               </BrandName>
-            </StyledNavigateComponent>
+            </StyledLinkComponent>
             <HeaderMenuAndAccountContainer>
               <HeaderMenuContainer>
                 {Object.values(navLinkData).map((navLinkDataItem) => (
@@ -35,9 +35,9 @@ const Header = (props) => {
                     isSelected={navLinkDataItem.id === selectedNavLinkId}
                     isLightTheme={isLightTheme}
                   >
-                    <StyledNavigateComponent to={navLinkDataItem.navRoute}>
+                    <StyledLinkComponent to={navLinkDataItem.navRoute}>
                       {navLinkDataItem.name}
-                    </StyledNavigateComponent>
+                    </StyledLinkComponent>
                   </HeaderMenuItem>
                 ))}
               </HeaderMenuContainer>

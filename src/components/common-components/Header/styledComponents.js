@@ -42,11 +42,12 @@ export const HeaderMenuItem = styled.li`
   flex: auto;
 `;
 
-export const StyledNavigateComponent = styled(Link)`
+export const StyledLinkComponent = styled(Link)`
   font-family: "Montserrat";
   font-size: 2rem;
   font-weight: 500;
   color: #ffffff;
+  text-decoration: none;
 `;
 
 export const AccountButton = styled.button`
