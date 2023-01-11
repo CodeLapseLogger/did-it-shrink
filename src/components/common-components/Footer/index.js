@@ -1,3 +1,5 @@
-const Footer = (props) => <h1>Page Footer</h1>;
+import { FooterBgContainer } from "./styledComponents";
+
+const Footer = (props) => <FooterBgContainer>Page Footer</FooterBgContainer>;
 
 export default Footer;
