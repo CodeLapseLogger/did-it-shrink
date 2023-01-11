@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const HeaderBgContainer = styled.nav`
   display: flex;
@@ -42,7 +42,7 @@ export const HeaderMenuItem = styled.li`
   flex: auto;
 `;
 
-export const StyledNavigateComponent = styled(Navigate)`
+export const StyledNavigateComponent = styled(Link)`
   font-family: "Montserrat";
   font-size: 2rem;
   font-weight: 500;
