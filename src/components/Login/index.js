@@ -91,38 +91,45 @@ const Login = (props) => {
     if (isLogin) {
       userLogin(formUserInput)
         .then((loginResponse) => {
-          console.log(`Login response: ${loginResponse}`);
           console.log(
-            `Login response access token: ${loginResponse.providerAccessToken}`
+            `JSON.stringify(loginResponse): ${JSON.stringify(loginResponse)}`
           );
-          for (let responseObjKey in loginResponse) {
-            console.log(
-              `responseObjKey: ${responseObjKey}, responseObjValue: ${loginResponse[responseObjKey]}`
-            );
-          }
 
-          generateJWT().then((jwtResponse) => {
-            Cookies.set("did-it-shrink-jwt-token", jwtResponse.jwt);
-            navigate("/", { replace: true });
-            setAuthStatus("success");
-          });
+          generateJWT()
+            .then((jwtResponse) => {
+              const { jwt } = jwtResponse;
+              Cookies.set("did-it-shrink-jwt-token", jwt);
+              setAuthStatus("success");
+              navigate("/", { replace: true });
+            })
+            .catch((jwtError) => {
+              setAuthStatus("failure");
+              console.log(
+                `JSON.stringify(jwtError): ${JSON.stringify(jwtError)}`
+              );
+            });
         })
         .catch((loginError) => {
-          console.log(loginError);
           setAuthStatus("failure");
+          console.log(
+            `JSON.stringify(loginError): ${JSON.stringify(loginError)}`
+          );
         });
     } else {
       userSignup(formUserInput)
         .then((signupResponse) => {
-          console.log(`Signup response: ${signupResponse}`);
-
           setAuthStatus("success");
           setFormUserInput(initialFormInputState);
           setIsLogin(true);
+          console.log(
+            `JSON.stringify(signupResponse): ${JSON.stringify(signupResponse)}`
+          );
         })
         .catch((signupError) => {
-          console.log(signupError);
           setAuthStatus("failure");
+          console.log(
+            `JSON.stringify(signupError): ${JSON.stringify(signupError)}`
+          );
         });
     }
   };
