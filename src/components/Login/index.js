@@ -34,12 +34,14 @@ import {
 } from "./styledComponents";
 
 const Login = (props) => {
-  // Track login form user input
-  const [formUserInput, setFormUserInput] = useState({
+  const initialFormInputState = {
     userName: "",
     userEmail: "",
     userPassword: "",
-  });
+  };
+
+  // Track login form user input
+  const [formUserInput, setFormUserInput] = useState(initialFormInputState);
 
   const [showPassword, toggleShowPassword] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
@@ -115,6 +117,7 @@ const Login = (props) => {
           console.log(`Signup response: ${signupResponse}`);
 
           setAuthStatus("success");
+          setFormUserInput(initialFormInputState);
           setIsLogin(true);
         })
         .catch((signupError) => {
@@ -143,6 +146,8 @@ const Login = (props) => {
   };
 
   let renderedFinalUI = null;
+  let isProcessingAuthRequest = authStatus === "loading";
+
   if (isInitialLoad) {
     renderedFinalUI = (
       <Oval
@@ -253,10 +258,7 @@ const Login = (props) => {
                 </LoginFormSingleInputContainer>
               </LoginFormInputsContainer>
 
-              <LoginFormButton
-                type="submit"
-                disabled={authStatus === "initial" ? false : true}
-              >
+              <LoginFormButton type="submit" disabled={isProcessingAuthRequest}>
                 {getSubmitButtonText()}
               </LoginFormButton>
 
@@ -266,7 +268,12 @@ const Login = (props) => {
                 <SignupMessage>
                   {isLogin ? "New user ?" : "Already signed up ?"}
                 </SignupMessage>
-                <LoginFormButton type="button" onClick={toggleSignup} isOutline>
+                <LoginFormButton
+                  type="button"
+                  onClick={toggleSignup}
+                  disabled={isProcessingAuthRequest}
+                  isOutline
+                >
                   {isLogin ? "Signup" : "Login"}
                 </LoginFormButton>
               </SignupContainer>
