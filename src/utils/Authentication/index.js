@@ -1,4 +1,4 @@
-export function validateUserInput(userInput) {
+function validateUserInput(userInput) {
   const { inputType, inputValue } = userInput;
   let validationOutcomeMessage = "";
   const emailRegExp = new RegExp("w+@w+.w+");
