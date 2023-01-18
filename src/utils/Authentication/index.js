@@ -16,3 +16,34 @@ export function validateUserInput(userInput) {
 
   return validationOutcomeMessage;
 }
+
+export function validateFormInput(formInput) {
+  const { userName, userEmail, userPassword } = formInput;
+  const userInputData = [
+    {
+      inputType: "name",
+      inputValue: userName,
+    },
+    {
+      inputType: "email",
+      inputValue: userEmail,
+    },
+    {
+      inputType: "password",
+      inputValue: userPassword,
+    },
+  ];
+
+  const validationOutcomes = {
+    name: "",
+    email: "",
+    password: "",
+  };
+
+  for (let userInputItem of userInputData) {
+    const { inputType } = userInputItem;
+    validationOutcomes[inputType] = validateUserInput(userInputData);
+  }
+
+  return validationOutcomes;
+}
