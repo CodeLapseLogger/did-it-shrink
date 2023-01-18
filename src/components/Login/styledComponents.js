@@ -169,3 +169,9 @@ export const SignupMessage = styled(GreyTextMedium)`
   font-size: 1.2rem;
   color: #5e5c5b;
 `;
+
+export const ErroMessage = styled.p`
+  font-family: "Montserrat";
+  color: red;
+  margin: 0.5rem 0;
+`;
