@@ -1,24 +1,70 @@
+// Separate object to model error
+// messages and the nested objects
+// is intentional to enable extension
+// of error checks in the future.
+const errorMessages = {
+  generic: {
+    emptyField: "*Required Field",
+  },
+  email: {
+    invalid: "*Invalid email address",
+  },
+  password: {
+    length: "*Password should be >= 8 characters",
+  },
+};
+
+// Function to validate single user input.
+// The setup of isErroneous property with
+// initial boolean value: true, is intentional.
+// That is because the function primarily does
+// error checks and has more cases of failure
+// than the single pass case. So, if the initial
+// value is set to: false, the number of times the
+// value needs to be toggled to: true, is a linear
+// function of the number of error checks, repeating
+// the line of code in every failure case. With the
+// current setup, will only have to toggle the value
+// once, when all checks pass. The emphasis is on
+// "Do not Repeat Yourself" (DRY) best practice of
+// software engineering.
 function validateUserInput(userInput) {
   const { inputType, inputValue } = userInput;
-  let validationOutcomeMessage = "";
-  const emailRegExp = new RegExp("w+@w+.w+");
+  let inputValidationResult = {
+    isErroneous: true /* initial assumption: input is erroneous */,
+    errorMessage: "",
+  };
+
+  const validEmailRegExp = new RegExp("w+@w+.w+");
 
   if (inputValue === "") {
-    validationOutcomeMessage = "*Required Field";
+    inputValidationResult.errorMessage = errorMessages.generic.emptyField;
   } else if (inputType === "password" && inputValue.length < 8) {
-    validationOutcomeMessage = "*Password should be >= 8 characters";
+    inputValidationResult.errorMessage = errorMessages.password.length;
   } else if (
     inputType === "email" &&
-    inputValue.match(emailRegExp).length !== 1
+    inputValue.match(validEmailRegExp).length !==
+      1 /* input didn't match valid pattern */
   ) {
-    validationOutcomeMessage = "*Invalid email address";
+    inputValidationResult.errorMessage = errorMessages.email.invalid;
+  } else {
+    // all checks passed
+    inputValidationResult.isErroneous = false; // error flag toggled once
   }
 
-  return validationOutcomeMessage;
+  return inputValidationResult;
 }
 
 export function validateFormInput(formInput) {
   const { userName, userEmail, userPassword } = formInput;
+  let formInputValidationResults = {
+    atleastOneInputIsErroneous: false,
+    errorMessages: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  };
   const userInputData = [
     {
       inputType: "name",
@@ -34,16 +80,12 @@ export function validateFormInput(formInput) {
     },
   ];
 
-  const validationOutcomes = {
-    name: "",
-    email: "",
-    password: "",
-  };
-
   for (let userInputItem of userInputData) {
     const { inputType } = userInputItem;
-    validationOutcomes[inputType] = validateUserInput(userInputData);
+    const { isErroneous, errorMessage } = validateUserInput(userInputItem);
+    formInputValidationResults.atleastOneInputIsErroneous ||= isErroneous; // Captures the aggregate of all erroneous form inputs
+    formInputValidationResults.errorMessages[inputType] = errorMessage;
   }
 
-  return validationOutcomes;
+  return formInputValidationResults;
 }
