@@ -55,8 +55,8 @@ function validateUserInput(userInput) {
   return inputValidationResult;
 }
 
-export function validateFormInput(formInput) {
-  const { userName, userEmail, userPassword } = formInput;
+export function validateFormInput(formData) {
+  const { userName, userEmail, userPassword, isLogin } = formData;
   let formInputValidationResults = {
     atleastOneInputIsErroneous: false,
     errorMessages: {
@@ -82,6 +82,11 @@ export function validateFormInput(formInput) {
 
   for (let userInputItem of userInputData) {
     const { inputType } = userInputItem;
+
+    if (isLogin && inputType === "name") {
+      continue;
+    }
+
     const { isErroneous, errorMessage } = validateUserInput(userInputItem);
     formInputValidationResults.atleastOneInputIsErroneous ||= isErroneous; // Captures the aggregate of all erroneous form inputs
     formInputValidationResults.errorMessages[inputType] = errorMessage;
