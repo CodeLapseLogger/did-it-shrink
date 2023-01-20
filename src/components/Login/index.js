@@ -4,6 +4,7 @@ import { IconContext } from "react-icons";
 import { BsFillEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 import Cookies from "js-cookie";
 import { Oval } from "react-loader-spinner";
+import { validateFormInput } from "../../utils/Authentication";
 
 import {
   userSignup,
@@ -31,6 +32,7 @@ import {
   SignupContainer,
   SignupMessage,
   ToggleShowPasswordButton,
+  ErrorMessage,
 } from "./styledComponents";
 
 const Login = (props) => {
@@ -40,6 +42,12 @@ const Login = (props) => {
     userPassword: "",
   };
 
+  const initialErrorMessagesState = {
+    name: "",
+    email: "",
+    password: "",
+  };
+
   // Track login form user input
   const [formUserInput, setFormUserInput] = useState(initialFormInputState);
 
@@ -47,6 +55,7 @@ const Login = (props) => {
   const [isLogin, setIsLogin] = useState(true);
   const [authStatus, setAuthStatus] = useState("initial");
   const [isInitialLoad, setIsInitialLoad] = useState("true");
+  const [errorMessages, setErrorMessages] = useState(initialErrorMessagesState);
   let isUserLoggedIn = useRef(false);
 
   const navigate = useNavigate();
@@ -85,6 +94,12 @@ const Login = (props) => {
   const onFormSubmit = (formSubmitEvent) => {
     formSubmitEvent.preventDefault();
     console.log(formUserInput);
+    const inputValidationResult = validateFormInput(formUserInput);
+
+    if (inputValidationResult.atleastOneInputIsErroneous) {
+      setErrorMessages(inputValidationResult.errorMessages);
+      return;
+    }
 
     setAuthStatus("loading");
 
@@ -195,74 +210,91 @@ const Login = (props) => {
             <LoginFormContainer onSubmit={onFormSubmit}>
               <LoginFormInputsContainer>
                 {!isLogin && (
+                  <>
+                    <LoginFormSingleInputContainer>
+                      <GreyTextMedium as="label" htmlFor="userName" isLabel>
+                        Username
+                      </GreyTextMedium>
+                      <UserInputContainer>
+                        <LoginFormInput
+                          id="userName"
+                          type="text"
+                          name="userName"
+                          value={formUserInput.userName}
+                          placeholder="Type in username..."
+                          onChange={onFormUserInputChange}
+                        />
+                      </UserInputContainer>
+                    </LoginFormSingleInputContainer>
+                    {errorMessages.name && (
+                      <ErrorMessage>{errorMessages.name}</ErrorMessage>
+                    )}
+                  </>
+                )}
+
+                <>
                   <LoginFormSingleInputContainer>
-                    <GreyTextMedium as="label" htmlFor="userName" isLabel>
-                      Username
+                    <GreyTextMedium as="label" htmlFor="userEmail" isLabel>
+                      Email
                     </GreyTextMedium>
                     <UserInputContainer>
                       <LoginFormInput
-                        id="userName"
-                        type="text"
-                        name="userName"
-                        value={formUserInput.userName}
-                        placeholder="Type in username..."
+                        id="userEmail"
+                        type="email"
+                        name="userEmail"
+                        value={formUserInput.userEmail}
+                        placeholder="Enter your valid email address"
                         onChange={onFormUserInputChange}
                       />
                     </UserInputContainer>
                   </LoginFormSingleInputContainer>
-                )}
-                <LoginFormSingleInputContainer>
-                  <GreyTextMedium as="label" htmlFor="userEmail" isLabel>
-                    Email
-                  </GreyTextMedium>
-                  <UserInputContainer>
-                    <LoginFormInput
-                      id="userEmail"
-                      type="email"
-                      name="userEmail"
-                      value={formUserInput.userEmail}
-                      placeholder="Enter your valid email address"
-                      onChange={onFormUserInputChange}
-                    />
-                  </UserInputContainer>
-                </LoginFormSingleInputContainer>
+                  {errorMessages.email && (
+                    <ErrorMessage>{errorMessages.email}</ErrorMessage>
+                  )}
+                </>
 
-                <LoginFormSingleInputContainer>
-                  <GreyTextMedium as="label" htmlFor="userPassword" isLabel>
-                    Password
-                  </GreyTextMedium>
-                  <UserInputContainer>
-                    <LoginFormInput
-                      id="userPassword"
-                      type={showPassword ? "text" : "password"}
-                      name="userPassword"
-                      value={formUserInput.userPassword}
-                      placeholder="Choose a strong password"
-                      onChange={onFormUserInputChange}
-                      isTypePassword
-                    />
-                    <ToggleShowPasswordButton
-                      type="button"
-                      onClick={onToggleShowPassword}
-                    >
-                      <IconContext.Provider
-                        value={{
-                          style: {
-                            height: "1.5rem",
-                            width: "1.5rem",
-                            color: "#3d3a38",
-                          },
-                        }}
+                <>
+                  <LoginFormSingleInputContainer>
+                    <GreyTextMedium as="label" htmlFor="userPassword" isLabel>
+                      Password
+                    </GreyTextMedium>
+                    <UserInputContainer>
+                      <LoginFormInput
+                        id="userPassword"
+                        type={showPassword ? "text" : "password"}
+                        name="userPassword"
+                        value={formUserInput.userPassword}
+                        placeholder="Choose a strong password"
+                        onChange={onFormUserInputChange}
+                        isTypePassword
+                      />
+                      <ToggleShowPasswordButton
+                        type="button"
+                        onClick={onToggleShowPassword}
                       >
-                        {showPassword ? (
-                          <BsFillEyeFill />
-                        ) : (
-                          <BsFillEyeSlashFill />
-                        )}
-                      </IconContext.Provider>
-                    </ToggleShowPasswordButton>
-                  </UserInputContainer>
-                </LoginFormSingleInputContainer>
+                        <IconContext.Provider
+                          value={{
+                            style: {
+                              height: "1.5rem",
+                              width: "1.5rem",
+                              color: "#3d3a38",
+                            },
+                          }}
+                        >
+                          {showPassword ? (
+                            <BsFillEyeFill />
+                          ) : (
+                            <BsFillEyeSlashFill />
+                          )}
+                        </IconContext.Provider>
+                      </ToggleShowPasswordButton>
+                    </UserInputContainer>
+                  </LoginFormSingleInputContainer>
+
+                  {errorMessages.password && (
+                    <ErrorMessage>{errorMessages.password}</ErrorMessage>
+                  )}
+                </>
               </LoginFormInputsContainer>
 
               <LoginFormButton type="submit" disabled={isProcessingAuthRequest}>
