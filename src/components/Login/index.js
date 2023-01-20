@@ -94,7 +94,8 @@ const Login = (props) => {
   const onFormSubmit = (formSubmitEvent) => {
     formSubmitEvent.preventDefault();
     console.log(formUserInput);
-    const inputValidationResult = validateFormInput(formUserInput);
+    const formDataForValidation = { ...formUserInput, isLogin };
+    const inputValidationResult = validateFormInput(formDataForValidation);
 
     if (inputValidationResult.atleastOneInputIsErroneous) {
       setErrorMessages(inputValidationResult.errorMessages);
