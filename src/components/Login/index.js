@@ -316,7 +316,11 @@ const Login = (props) => {
                 </>
               </LoginFormInputsContainer>
 
-              <LoginFormButton type="submit" disabled={isProcessingAuthRequest}>
+              <LoginFormButton
+                type="submit"
+                disabled={isProcessingAuthRequest}
+                isProcessingAuthRequest={isProcessingAuthRequest}
+              >
                 {isProcessingAuthRequest &&
                   getStyledOvalSpinnerComponent({
                     height: 25,
