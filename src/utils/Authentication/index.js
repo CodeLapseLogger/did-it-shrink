@@ -43,8 +43,8 @@ function validateUserInput(userInput) {
     inputValidationResult.errorMessage = errorMessages.password.length;
   } else if (
     inputType === "email" &&
-    inputValue.match(validEmailRegExp).length !==
-      1 /* input didn't match valid pattern */
+    inputValue.match(validEmailRegExp) ===
+      null /* input didn't match valid pattern */
   ) {
     inputValidationResult.errorMessage = errorMessages.email.invalid;
   } else {
