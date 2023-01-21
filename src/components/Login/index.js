@@ -162,10 +162,10 @@ const Login = (props) => {
 
   const getSubmitButtonText = () => {
     let buttonText = "";
-    if (authStatus === "initial") {
-      buttonText = "Submit";
-    } else if (authStatus === "loading") {
+    if (authStatus === "loading") {
       buttonText = "Processing";
+    } else {
+      buttonText = "Submit";
     }
 
     return buttonText;
