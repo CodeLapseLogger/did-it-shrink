@@ -179,12 +179,6 @@ export const ErrorMessage = styled(FormMessage)`
   color: red;
 `;
 
-export const SuccessMessageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const SuccessMessage = styled(FormMessage)`
   color: green;
   font-size: 1.5rem;
