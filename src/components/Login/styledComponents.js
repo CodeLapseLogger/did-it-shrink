@@ -149,6 +149,13 @@ export const LoginFormButton = styled.button`
   font-weight: 600;
   margin: ${(props) => (props.isOutline ? "0 0 0.5rem 0" : "0 0 0.25rem 0")};
   align-self: ${(props) => (props.isOutline ? "none" : "center")};
+  ${(props) =>
+    props.isProcessingAuthRequest &&
+    `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `}
 `;
 
 export const LoginFormHorizontalLine = styled.hr`
