@@ -190,3 +190,9 @@ export const SuccessMessage = styled(FormMessage)`
   font-size: 1.5rem;
   margin: 0.5rem;
 `;
+
+export const CenteredContentContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
