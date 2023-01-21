@@ -327,6 +327,9 @@ const Login = (props) => {
                     width: 25,
                     color: "white",
                     secondaryColor: "#c3ad3e",
+                    wrapperStyle: {
+                      marginRight: "0.5rem",
+                    },
                   })}
                 {getSubmitButtonText()}
               </LoginFormButton>
