@@ -34,6 +34,7 @@ import {
   SignupMessage,
   ToggleShowPasswordButton,
   ErrorMessage,
+  CenteredContentContainer,
 } from "./styledComponents";
 
 const Login = (props) => {
@@ -170,7 +171,11 @@ const Login = (props) => {
       ...defaultOvalSpinnerConfig,
       ...customConfig,
     };
-    return <Oval {...finalOvalSpinnerConfig} />;
+    return (
+      <CenteredContentContainer>
+        <Oval {...finalOvalSpinnerConfig} />
+      </CenteredContentContainer>
+    );
   }
 
   let renderedFinalUI = null;
