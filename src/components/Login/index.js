@@ -5,6 +5,7 @@ import { BsFillEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 import Cookies from "js-cookie";
 import { Oval } from "react-loader-spinner";
 import { validateFormInput } from "../../utils/Authentication";
+import { defaultOvalSpinnerConfig } from "../../utils/LoaderSpinner";
 
 import {
   userSignup,
@@ -164,24 +165,19 @@ const Login = (props) => {
     return buttonText;
   };
 
+  function getStyledOvalSpinnerComponent(customConfig = {}) {
+    const finalOvalSpinnerConfig = {
+      ...defaultOvalSpinnerConfig,
+      ...customConfig,
+    };
+    return <Oval {...finalOvalSpinnerConfig} />;
+  }
+
   let renderedFinalUI = null;
   let isProcessingAuthRequest = authStatus === "loading";
 
   if (isInitialLoad) {
-    renderedFinalUI = (
-      <Oval
-        height={80}
-        width={80}
-        color="#eacd3c"
-        wrapperStyle={{}}
-        wrapperClass=""
-        visible={true}
-        ariaLabel="oval-loading"
-        secondaryColor="#f5e17e"
-        strokeWidth={2}
-        strokeWidthSecondary={2}
-      />
-    );
+    renderedFinalUI = getStyledOvalSpinnerComponent();
   } else if (isUserLoggedIn.current) {
     renderedFinalUI = <Navigate to="/" replace />;
   } else {
