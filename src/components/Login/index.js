@@ -1,7 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons";
-import { BsFillEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
+import {
+  BsFillEyeSlashFill,
+  BsFillEyeFill,
+  BsFillCheckCircleFill,
+} from "react-icons/bs";
 import Cookies from "js-cookie";
 import { Oval } from "react-loader-spinner";
 import { validateFormInput } from "../../utils/Authentication";
@@ -35,6 +39,7 @@ import {
   ToggleShowPasswordButton,
   ErrorMessage,
   CenteredContentContainer,
+  SuccessMessage,
 } from "./styledComponents";
 
 const Login = (props) => {
@@ -178,6 +183,21 @@ const Login = (props) => {
     );
   }
 
+  function getSignupSuccessUI() {
+    return (
+      <CenteredContentContainer>
+        <IconContext.Provider
+          value={{
+            style: { height: "1.5rem", width: "1.5rem", color: "green" },
+          }}
+        >
+          <BsFillCheckCircleFill />
+        </IconContext.Provider>
+        <SuccessMessage>Signup Success</SuccessMessage>
+      </CenteredContentContainer>
+    );
+  }
+
   let renderedFinalUI = null;
   let isProcessingAuthRequest = authStatus === "loading";
 
@@ -205,6 +225,7 @@ const Login = (props) => {
 
           <LoginFormContentContainer>
             <LoginFormHeader>{isLogin ? "Login" : "Signup"}</LoginFormHeader>
+            {authStatus === "success" && getSignupSuccessUI()}
             <LoginFormContainer onSubmit={onFormSubmit}>
               <LoginFormInputsContainer>
                 {!isLogin && (
