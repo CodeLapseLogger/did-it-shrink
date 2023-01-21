@@ -163,7 +163,7 @@ const Login = (props) => {
   const getSubmitButtonText = () => {
     let buttonText = "";
     if (authStatus === "loading") {
-      buttonText = "Processing";
+      buttonText = "Processing...";
     } else {
       buttonText = "Submit";
     }
@@ -317,6 +317,13 @@ const Login = (props) => {
               </LoginFormInputsContainer>
 
               <LoginFormButton type="submit" disabled={isProcessingAuthRequest}>
+                {isProcessingAuthRequest &&
+                  getStyledOvalSpinnerComponent({
+                    height: 25,
+                    width: 25,
+                    color: "white",
+                    secondaryColor: "#c3ad3e",
+                  })}
                 {getSubmitButtonText()}
               </LoginFormButton>
 
