@@ -159,10 +159,6 @@ const Login = (props) => {
       buttonText = "Submit";
     } else if (authStatus === "loading") {
       buttonText = "Processing";
-    } else if (authStatus === "success") {
-      buttonText = `${isLogin ? "Login" : "Signup"} Success`;
-    } else if (authStatus === "failure") {
-      buttonText = `${isLogin ? "Login" : "Signup"} Failure`;
     }
 
     return buttonText;
