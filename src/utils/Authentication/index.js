@@ -35,7 +35,7 @@ function validateUserInput(userInput) {
     errorMessage: "",
   };
 
-  const validEmailRegExp = new RegExp("w+@w+.w+");
+  const validEmailRegExp = new RegExp("\\w+@\\w+\\.\\w+");
 
   if (inputValue === "") {
     inputValidationResult.errorMessage = errorMessages.generic.emptyField;
