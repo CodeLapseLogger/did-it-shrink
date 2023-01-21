@@ -188,7 +188,7 @@ const Login = (props) => {
       <CenteredContentContainer>
         <IconContext.Provider
           value={{
-            style: { height: "1.5rem", width: "1.5rem", color: "green" },
+            style: { height: "1.5rem", width: "1.5rem", color: "#9cb82b" },
           }}
         >
           <BsFillCheckCircleFill />

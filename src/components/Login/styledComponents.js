@@ -180,7 +180,7 @@ export const ErrorMessage = styled(FormMessage)`
 `;
 
 export const SuccessMessage = styled(FormMessage)`
-  color: green;
+  color: #9cb82b;
   font-size: 1.5rem;
   margin: 0.5rem;
 `;
