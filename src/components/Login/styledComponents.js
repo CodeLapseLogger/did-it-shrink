@@ -188,8 +188,9 @@ export const ErrorMessage = styled(FormMessage)`
 
 export const AuthReqOutcomeMessage = styled(FormMessage)`
   color: ${(props) => props.messageColor};
-  font-size: 1.5rem;
-  margin: 0.5rem;
+  font-size: 1rem;
+  margin: 0.5rem 0 0.5rem 0.5rem;
+  flex-shrink: 1;
 `;
 
 export const CenteredContentContainer = styled.div`

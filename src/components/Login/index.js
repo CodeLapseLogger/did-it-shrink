@@ -204,13 +204,13 @@ const Login = (props) => {
   }
 
   function getAuthReqOutcomeMessageUI(messageConfig) {
-    const { message, messageColor, messageReactIcon } = messageConfig;
+    const { message, messageColor, messageReactIcon, iconSize } = messageConfig;
 
     return (
       <CenteredContentContainer>
         <IconContext.Provider
           value={{
-            style: { height: "1.5rem", width: "1.5rem", color: messageColor },
+            style: { height: iconSize, width: iconSize, color: messageColor },
           }}
         >
           {messageReactIcon}
@@ -254,6 +254,7 @@ const Login = (props) => {
                 message: "Signup Success",
                 messageColor: "#9cb82b",
                 messageReactIcon: <BsFillCheckCircleFill />,
+                iconSize: "1.2rem",
               })}
 
             {authStatus === "failure" &&
@@ -261,6 +262,7 @@ const Login = (props) => {
                 message: errorMessages.auth,
                 messageColor: "red",
                 messageReactIcon: <BsXCircleFill />,
+                iconSize: "1.5rem",
               })}
             <LoginFormContainer onSubmit={onFormSubmit}>
               <LoginFormInputsContainer>
