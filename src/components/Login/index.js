@@ -5,6 +5,7 @@ import {
   BsFillEyeSlashFill,
   BsFillEyeFill,
   BsFillCheckCircleFill,
+  BsXCircleFill,
 } from "react-icons/bs";
 import Cookies from "js-cookie";
 import { Oval } from "react-loader-spinner";
@@ -39,7 +40,7 @@ import {
   ToggleShowPasswordButton,
   ErrorMessage,
   CenteredContentContainer,
-  SuccessMessage,
+  AuthReqOutcomeMessage,
 } from "./styledComponents";
 
 const Login = (props) => {
@@ -202,17 +203,21 @@ const Login = (props) => {
     );
   }
 
-  function getSignupSuccessUI() {
+  function getAuthReqOutcomeMessageUI(messageConfig) {
+    const { message, messageColor, messageReactIcon } = messageConfig;
+
     return (
       <CenteredContentContainer>
         <IconContext.Provider
           value={{
-            style: { height: "1.5rem", width: "1.5rem", color: "#9cb82b" },
+            style: { height: "1.5rem", width: "1.5rem", color: messageColor },
           }}
         >
-          <BsFillCheckCircleFill />
+          {messageReactIcon}
         </IconContext.Provider>
-        <SuccessMessage>Signup Success</SuccessMessage>
+        <AuthReqOutcomeMessage messageColor={messageColor}>
+          {message}
+        </AuthReqOutcomeMessage>
       </CenteredContentContainer>
     );
   }
@@ -244,7 +249,19 @@ const Login = (props) => {
 
           <LoginFormContentContainer>
             <LoginFormHeader>{isLogin ? "Login" : "Signup"}</LoginFormHeader>
-            {authStatus === "success" && getSignupSuccessUI()}
+            {authStatus === "success" &&
+              getAuthReqOutcomeMessageUI({
+                message: "Signup Success",
+                messageColor: "#9cb82b",
+                messageReactIcon: <BsFillCheckCircleFill />,
+              })}
+
+            {authStatus === "failure" &&
+              getAuthReqOutcomeMessageUI({
+                message: errorMessages.auth,
+                messageColor: "red",
+                messageReactIcon: <BsXCircleFill />,
+              })}
             <LoginFormContainer onSubmit={onFormSubmit}>
               <LoginFormInputsContainer>
                 {!isLogin && (
