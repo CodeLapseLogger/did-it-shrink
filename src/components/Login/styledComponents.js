@@ -186,8 +186,8 @@ export const ErrorMessage = styled(FormMessage)`
   color: red;
 `;
 
-export const SuccessMessage = styled(FormMessage)`
-  color: #9cb82b;
+export const AuthReqOutcomeMessage = styled(FormMessage)`
+  color: ${(props) => props.messageColor};
   font-size: 1.5rem;
   margin: 0.5rem;
 `;
