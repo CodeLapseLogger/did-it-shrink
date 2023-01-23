@@ -107,6 +107,9 @@ const Login = (props) => {
     if (inputValidationResult.atleastOneInputIsErroneous) {
       setErrorMessages(inputValidationResult.errorMessages);
       return;
+    } else {
+      // no validation errors, reset earlier error messages
+      setErrorMessages(initialErrorMessagesState);
     }
 
     setAuthStatus("loading");
