@@ -49,10 +49,15 @@ const Login = (props) => {
     userPassword: "",
   };
 
+  // Tracks error message state for
+  // form field inputs and also the
+  // signup/login authentication
+  // request outcome in: auth
   const initialErrorMessagesState = {
     name: "",
     email: "",
     password: "",
+    auth: "",
   };
 
   // Track login form user input
@@ -98,6 +103,14 @@ const Login = (props) => {
       (previousShowPasswordState) => !previousShowPasswordState
     );
 
+  const updateAuthErrorMessage = (failureResponse) => {
+    const { message } = failureResponse;
+    setErrorMessages((previousErrorMessages) => ({
+      ...previousErrorMessages,
+      auth: message,
+    }));
+  };
+
   const onFormSubmit = (formSubmitEvent) => {
     formSubmitEvent.preventDefault();
     console.log(formUserInput);
@@ -130,6 +143,7 @@ const Login = (props) => {
             })
             .catch((jwtError) => {
               setAuthStatus("failure");
+              updateAuthErrorMessage(jwtError.response);
               console.log(
                 `JSON.stringify(jwtError): ${JSON.stringify(jwtError)}`
               );
@@ -137,6 +151,7 @@ const Login = (props) => {
         })
         .catch((loginError) => {
           setAuthStatus("failure");
+          updateAuthErrorMessage(loginError.response);
           console.log(
             `JSON.stringify(loginError): ${JSON.stringify(loginError)}`
           );
@@ -153,6 +168,7 @@ const Login = (props) => {
         })
         .catch((signupError) => {
           setAuthStatus("failure");
+          updateAuthErrorMessage(signupError.response);
           console.log(
             `JSON.stringify(signupError): ${JSON.stringify(signupError)}`
           );
