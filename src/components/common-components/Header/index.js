@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons";
 import {
   MdAccountCircle,
   MdOutlineNightlightRound,
   MdLightMode,
 } from "react-icons/md";
+import Cookies from "js-cookie";
 
 import { FiLogOut } from "react-icons/fi";
 
@@ -23,14 +25,28 @@ import {
 } from "./styledComponents";
 
 const Header = (props) => {
-  const headerActionButtonIconList = [<FiLogOut />];
+  const navigate = useNavigate();
+
+  const headerActionButtonDataList = [
+    {
+      iconComponent: <FiLogOut />,
+      clickHandler: onLogout,
+    },
+  ];
+
+  function onLogout(logoutEvent) {
+    logoutEvent.preventDefault();
+
+    Cookies.remove("did-it-shrink-jwt-token");
+    navigate("/login", { replace: true });
+  }
 
   const renderHeaderActionButtonList = (isLightTheme) => {
-    const headerActionButtonListItems = headerActionButtonIconList.map(
-      (iconListItem) => (
+    const headerActionButtonListItems = headerActionButtonDataList.map(
+      (buttonDataItem) => (
         <HeaderActionButton
           type="button"
-          onClick={() => {}}
+          onClick={buttonDataItem.clickHandler}
           isLightTheme={isLightTheme}
         >
           <IconContext.Provider
@@ -42,7 +58,7 @@ const Header = (props) => {
               },
             }}
           >
-            {iconListItem}
+            {buttonDataItem.iconComponent}
           </IconContext.Provider>
         </HeaderActionButton>
       )
@@ -64,10 +80,20 @@ const Header = (props) => {
   return (
     <AppContext.Consumer>
       {(appContextData) => {
-        const { navLinkData, selectedNavLinkId, isLightTheme } = appContextData;
-        headerActionButtonIconList.unshift(
-          isLightTheme ? <MdOutlineNightlightRound /> : <MdLightMode />
-        );
+        const {
+          navLinkData,
+          selectedNavLinkId,
+          isLightTheme,
+          toggleIsLightTheme,
+        } = appContextData;
+        headerActionButtonDataList.unshift({
+          iconComponent: isLightTheme ? (
+            <MdOutlineNightlightRound />
+          ) : (
+            <MdLightMode />
+          ),
+          clickHandler: () => toggleIsLightTheme(!isLightTheme),
+        });
 
         return (
           <HeaderBgContainer isLightTheme={isLightTheme}>
@@ -96,7 +122,7 @@ const Header = (props) => {
                 })}
               </HeaderMenuContainer>
 
-              {renderHeaderActionButtonList(isLightTheme)}
+              {renderHeaderActionButtonList(isLightTheme, toggleIsLightTheme)}
             </HeaderMenuAndActionButtonsContainer>
           </HeaderBgContainer>
         );
