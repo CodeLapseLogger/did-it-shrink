@@ -5,9 +5,9 @@ export const HeaderBgContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 5vh;
+  height: 9vh;
   width: 100%;
-  padding: 1rem 0;
+  padding: 1rem 2rem;
   background-color: #eacd3c;
 `;
 
@@ -16,7 +16,6 @@ export const BrandName = styled.h1`
   font-size: 2rem;
   font-weight: 700;
   color: #f47622;
-  padding: 0 1rem;
 `;
 
 export const BrandNamePartial = styled(BrandName)`
@@ -39,7 +38,7 @@ export const HeaderMenuContainer = styled.ul`
 `;
 
 export const HeaderMenuItem = styled.li`
-  margin: 0 0.5rem;
+  margin: 0 0.85rem;
   background-color: ${(props) =>
     props.isSelected ? "#ffffff" : "transparent"};
   color: ${(props) => (props.isSelected ? "#eacd3c" : "#ffffff")};
@@ -67,7 +66,7 @@ export const HeaderActionButtonList = styled(HeaderMenuContainer)`
 `;
 
 export const HeaderActionButtonListItem = styled.li`
-  margin: 0 0.15rem 0 0.25;
+  margin: 0 0.35rem 0 0.15rem;
 `;
 
 export const HeaderActionButton = styled.button`
@@ -75,5 +74,4 @@ export const HeaderActionButton = styled.button`
   outline: none;
   cursor: pointer;
   background: transparent;
-  padding-right: 1rem;
 `;

@@ -6,6 +6,5 @@ export const FooterBgContainer = styled.div`
   align-items: center;
   background-color: #eacd3c;
   width: 100%;
-  height: 5vh;
-  padding: 1rem 0;
+  height: 9vh;
 `;
