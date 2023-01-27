@@ -5,6 +5,8 @@ import {
   MdLightMode,
 } from "react-icons/md";
 
+import { FiLogOut } from "react-icons/fi";
+
 import AppContext from "../../../contexts/AppContext";
 
 import {
@@ -21,7 +23,7 @@ import {
 } from "./styledComponents";
 
 const Header = (props) => {
-  const headerActionButtonIconList = [<MdAccountCircle />];
+  const headerActionButtonIconList = [<FiLogOut />];
 
   const renderHeaderActionButtonList = (isLightTheme) => {
     const headerActionButtonListItems = headerActionButtonIconList.map(
