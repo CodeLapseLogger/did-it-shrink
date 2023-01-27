@@ -1,64 +1,101 @@
 import { IconContext } from "react-icons";
-import { MdAccountCircle } from "react-icons/md";
+import {
+  MdAccountCircle,
+  MdOutlineNightlightRound,
+  MdLightMode,
+} from "react-icons/md";
 
 import AppContext from "../../../contexts/AppContext";
 
 import {
-  AccountButton,
+  HeaderActionButtonList,
+  HeaderActionButtonListItem,
+  HeaderActionButton,
   BrandName,
   BrandNamePartial,
   HeaderBgContainer,
-  HeaderMenuAndAccountContainer,
+  HeaderMenuAndActionButtonsContainer,
   HeaderMenuContainer,
   HeaderMenuItem,
   StyledLinkComponent,
 } from "./styledComponents";
 
 const Header = (props) => {
+  const headerActionButtonIconList = [<MdAccountCircle />];
+
+  const renderHeaderActionButtonList = (isLightTheme) => {
+    const headerActionButtonListItems = headerActionButtonIconList.map(
+      (iconListItem) => (
+        <HeaderActionButton
+          type="button"
+          onClick={() => {}}
+          isLightTheme={isLightTheme}
+        >
+          <IconContext.Provider
+            value={{
+              style: {
+                height: "2rem",
+                width: "2rem",
+                color: "#ffffff",
+              },
+            }}
+          >
+            {iconListItem}
+          </IconContext.Provider>
+        </HeaderActionButton>
+      )
+    );
+
+    const headerActionButtonListUI = (
+      <HeaderActionButtonList>
+        {headerActionButtonListItems.map((actionButtonListItem) => (
+          <HeaderActionButtonListItem>
+            {actionButtonListItem}
+          </HeaderActionButtonListItem>
+        ))}
+      </HeaderActionButtonList>
+    );
+
+    return headerActionButtonListUI;
+  };
+
   return (
     <AppContext.Consumer>
       {(appContextData) => {
         const { navLinkData, selectedNavLinkId, isLightTheme } = appContextData;
+        headerActionButtonIconList.unshift(
+          isLightTheme ? <MdOutlineNightlightRound /> : <MdLightMode />
+        );
 
         return (
           <HeaderBgContainer isLightTheme={isLightTheme}>
             <StyledLinkComponent to="/">
               <BrandName>
-                Did It <BrandNamePartial as="span">Shrink</BrandNamePartial>
+                Did It<BrandNamePartial as="span">Shrink</BrandNamePartial>
               </BrandName>
             </StyledLinkComponent>
-            <HeaderMenuAndAccountContainer>
+            <HeaderMenuAndActionButtonsContainer>
               <HeaderMenuContainer>
-                {Object.values(navLinkData).map((navLinkDataItem) => (
-                  <HeaderMenuItem
-                    key={navLinkDataItem.id}
-                    isSelected={navLinkDataItem.id === selectedNavLinkId}
-                    isLightTheme={isLightTheme}
-                  >
-                    <StyledLinkComponent to={navLinkDataItem.navRoute}>
-                      {navLinkDataItem.name}
-                    </StyledLinkComponent>
-                  </HeaderMenuItem>
-                ))}
+                {Object.values(navLinkData).map((navLinkDataItem) => {
+                  const isCurrentLinkSelected =
+                    navLinkDataItem.id === selectedNavLinkId;
+
+                  return (
+                    <HeaderMenuItem
+                      key={navLinkDataItem.id}
+                      isSelected={isCurrentLinkSelected}
+                      isLightTheme={isLightTheme}
+                    >
+                      <StyledLinkComponent to={navLinkDataItem.navRoute}>
+                        {navLinkDataItem.name}
+                      </StyledLinkComponent>
+                    </HeaderMenuItem>
+                  );
+                })}
               </HeaderMenuContainer>
-              <AccountButton
-                type="button"
-                onClick={() => {}}
-                isLightTheme={isLightTheme}
-              >
-                <IconContext.Provider
-                  value={{
-                    style: {
-                      height: "2rem",
-                      width: "2rem",
-                      color: "#ffffff",
-                    },
-                  }}
-                >
-                  <MdAccountCircle />
-                </IconContext.Provider>
-              </AccountButton>
-            </HeaderMenuAndAccountContainer>
+
+              {renderHeaderActionButtonList(isLightTheme)}
+            </HeaderMenuAndActionButtonsContainer>
           </HeaderBgContainer>
         );
       }}

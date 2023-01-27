@@ -5,31 +5,34 @@ export const HeaderBgContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 10vh;
+  height: 5vh;
   width: 100%;
-  padding: 1.5rem 2rem;
+  padding: 1rem 0;
   background-color: #eacd3c;
 `;
 
 export const BrandName = styled.h1`
   font-family: "Kalam";
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #f47622;
+  padding: 0 1rem;
 `;
 
 export const BrandNamePartial = styled(BrandName)`
   font-weight: 300;
+  margin-left: 0;
 `;
 
-export const HeaderMenuAndAccountContainer = styled.div`
+export const HeaderMenuAndActionButtonsContainer = styled.div`
   display: flex;
   align-items: center;
+  height: 100%;
 `;
 
 export const HeaderMenuContainer = styled.ul`
   list-style-type: none;
-  padding-left: none;
+  padding-left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,21 +43,37 @@ export const HeaderMenuItem = styled.li`
   background-color: ${(props) =>
     props.isSelected ? "#ffffff" : "transparent"};
   color: ${(props) => (props.isSelected ? "#eacd3c" : "#ffffff")};
-  flex: auto;
+  /* flex: auto; */
+  ${(props) =>
+    props.isSelected &&
+    `
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+  `}
 `;
 
 export const StyledLinkComponent = styled(Link)`
   font-family: "Montserrat";
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
-  color: #ffffff;
+  color: inherit;
   text-decoration: none;
 `;
 
-export const AccountButton = styled.button`
+export const HeaderActionButtonList = styled(HeaderMenuContainer)`
+  justify-content: flex-start;
+  border-left: 0.1rem solid #f9f5f5;
+  margin-left: none;
+`;
+
+export const HeaderActionButtonListItem = styled.li`
+  margin: 0 0.15rem 0 0.25;
+`;
+
+export const HeaderActionButton = styled.button`
   border: none;
-  border-left: 0.1rem solid #ffffff;
   outline: none;
   cursor: pointer;
   background: transparent;
+  padding-right: 1rem;
 `;
