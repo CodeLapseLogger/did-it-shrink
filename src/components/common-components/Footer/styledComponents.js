@@ -32,6 +32,9 @@ export const FooterNavLinkItem = styled.li`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
+`;
+
+export const StyledNavLink = styled(StyledLink)`
   font-family: "Montserrat";
   font-size: 1.2rem;
   font-weight: 500;
