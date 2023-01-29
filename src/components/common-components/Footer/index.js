@@ -35,6 +35,7 @@ const Footer = (props) => {
                     height: "1.5rem",
                     width: "1.5rem",
                     color: "#ffffff",
+                    margin: "0 0.5rem",
                   },
                 }}
               >
