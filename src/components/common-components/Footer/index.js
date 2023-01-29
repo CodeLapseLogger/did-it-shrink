@@ -4,6 +4,7 @@ import {
   FooterNavLinkItem,
   FooterText,
   StyledLink,
+  StyledNavLink,
 } from "./styledComponents";
 
 import {
@@ -24,9 +25,12 @@ const Footer = (props) => {
 
         return (
           <FooterBgContainer>
-            <BrandName>
-              Did It <BrandNamePartial>Shrink</BrandNamePartial>
-            </BrandName>
+            <StyledLink to={navLinkData.home.navRoute}>
+              <BrandName>
+                Did It <BrandNamePartial>Shrink</BrandNamePartial>
+              </BrandName>
+            </StyledLink>
+
             <FooterText>
               Did It Shrink
               <IconContext.Provider
@@ -49,7 +53,7 @@ const Footer = (props) => {
 
                 return (
                   <FooterNavLinkItem key={id}>
-                    <StyledLink to={navRoute}>{name}</StyledLink>
+                    <StyledNavLink to={navRoute}>{name}</StyledNavLink>
                   </FooterNavLinkItem>
                 );
               })}
