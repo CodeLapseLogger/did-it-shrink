@@ -15,14 +15,17 @@ import {
   HeaderActionButtonList,
   HeaderActionButtonListItem,
   HeaderActionButton,
-  BrandName,
-  BrandNamePartial,
   HeaderBgContainer,
   HeaderMenuAndActionButtonsContainer,
   HeaderMenuContainer,
   HeaderMenuItem,
   StyledLinkComponent,
 } from "./styledComponents";
+
+import {
+  BrandName,
+  BrandNamePartial,
+} from "../../common-styled-components/commonStyledComponents";
 
 const Header = (props) => {
   const navigate = useNavigate();
