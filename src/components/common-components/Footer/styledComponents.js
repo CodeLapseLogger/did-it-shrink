@@ -7,7 +7,7 @@ export const FooterBgContainer = styled.div`
   align-items: center;
   background-color: #eacd3c;
   width: 100%;
-  height: 9vh;
+  /* height: 9vh; */
   padding: 1rem 2rem;
 `;
 
@@ -30,6 +30,10 @@ export const FooterNavLinkItem = styled.li`
   margin: 0.5rem 0;
 `;
 
-export const StyledLink = styled(Link, FooterText)`
+export const StyledLink = styled(Link)`
   text-decoration: none;
+  font-family: "Montserrat";
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ffffff;
 `;
