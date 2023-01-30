@@ -58,7 +58,12 @@ function App() {
           path="/"
           element={
             <ProtectedElement
-              mappedPage={<MappedPage bodyElement={<Home />} />}
+              mappedPage={
+                <MappedPage
+                  navLinkId={navLinkData.home.id}
+                  bodyElement={<Home />}
+                />
+              }
             />
           }
         />
@@ -67,7 +72,12 @@ function App() {
           path="contribute"
           element={
             <ProtectedElement
-              mappedPage={<MappedPage bodyElement={<Contribute />} />}
+              mappedPage={
+                <MappedPage
+                  navLinkId={navLinkData.contribute.id}
+                  bodyElement={<Contribute />}
+                />
+              }
             />
           }
         />
@@ -75,7 +85,12 @@ function App() {
           path="leverage"
           element={
             <ProtectedElement
-              mappedPage={<MappedPage bodyElement={<Leverage />} />}
+              mappedPage={
+                <MappedPage
+                  navLinkId={navLinkData.leverage.id}
+                  bodyElement={<Leverage />}
+                />
+              }
             />
           }
         />
@@ -83,7 +98,12 @@ function App() {
           path="resources"
           element={
             <ProtectedElement
-              mappedPage={<MappedPage bodyElement={<Resources />} />}
+              mappedPage={
+                <MappedPage
+                  navLinkId={navLinkData.resources.id}
+                  bodyElement={<Resources />}
+                />
+              }
             />
           }
         />
