@@ -40,9 +40,3 @@ export const StyledNavLink = styled(StyledLink)`
   font-weight: 500;
   color: #ffffff;
 `;
-
-export const IconContainer = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
