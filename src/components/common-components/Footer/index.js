@@ -5,6 +5,7 @@ import {
   FooterText,
   StyledLink,
   StyledNavLink,
+  IconContainer,
 } from "./styledComponents";
 
 import {
@@ -26,25 +27,27 @@ const Footer = (props) => {
         return (
           <FooterBgContainer>
             <StyledLink to={navLinkData.home.navRoute}>
-              <BrandName>
-                Did It <BrandNamePartial>Shrink</BrandNamePartial>
+              <BrandName as="p">
+                Did It <BrandNamePartial as="span">Shrink</BrandNamePartial>
               </BrandName>
             </StyledLink>
 
             <FooterText>
               Did It Shrink
-              <IconContext.Provider
-                value={{
-                  style: {
-                    height: "1.5rem",
-                    width: "1.5rem",
-                    color: "#ffffff",
-                    margin: "0 0.5rem",
-                  },
-                }}
-              >
-                <MdOutlineCopyright />
-              </IconContext.Provider>
+              <IconContainer>
+                <IconContext.Provider
+                  value={{
+                    style: {
+                      height: "1.5rem",
+                      width: "1.5rem",
+                      color: "#ffffff",
+                      margin: "0 0.5rem",
+                    },
+                  }}
+                >
+                  <MdOutlineCopyright />
+                </IconContext.Provider>
+              </IconContainer>
               2023. All Rights Reserved.
             </FooterText>
             <FooterNavLinksList>
