@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BrandName = styled.h1`
+export const BrandName = styled.p`
   font-family: "Kalam";
   font-size: 2rem;
   font-weight: 700;
