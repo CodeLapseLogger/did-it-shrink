@@ -5,7 +5,6 @@ import {
   FooterText,
   StyledLink,
   StyledNavLink,
-  IconContainer,
 } from "./styledComponents";
 
 import {
@@ -34,20 +33,18 @@ const Footer = (props) => {
 
             <FooterText>
               Did It Shrink
-              <IconContainer>
-                <IconContext.Provider
-                  value={{
-                    style: {
-                      height: "1.5rem",
-                      width: "1.5rem",
-                      color: "#ffffff",
-                      margin: "0 0.5rem",
-                    },
-                  }}
-                >
-                  <MdOutlineCopyright />
-                </IconContext.Provider>
-              </IconContainer>
+              <IconContext.Provider
+                value={{
+                  style: {
+                    height: "1.5rem",
+                    width: "1.5rem",
+                    color: "#ffffff",
+                    margin: "0 0.5rem -0.25rem",
+                  },
+                }}
+              >
+                <MdOutlineCopyright />
+              </IconContext.Provider>
               2023. All Rights Reserved.
             </FooterText>
             <FooterNavLinksList>
