@@ -5,7 +5,6 @@ export const HeaderBgContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 9vh;
   width: 100%;
   padding: 1rem 2rem;
   background-color: #eacd3c;
