@@ -101,7 +101,7 @@ const Header = (props) => {
         return (
           <HeaderBgContainer isLightTheme={isLightTheme}>
             <StyledLinkComponent to="/">
-              <BrandName>
+              <BrandName as="p">
                 Did It <BrandNamePartial as="span">Shrink</BrandNamePartial>
               </BrandName>
             </StyledLinkComponent>
