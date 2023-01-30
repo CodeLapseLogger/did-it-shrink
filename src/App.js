@@ -60,7 +60,9 @@ function App() {
             <ProtectedElement
               mappedPage={
                 <MappedPage
-                  navLinkId={navLinkData.home.id}
+                  navLinkIdSetter={() =>
+                    setSelectedNavLinkId(navLinkData.home.id)
+                  }
                   bodyElement={<Home />}
                 />
               }
@@ -74,7 +76,9 @@ function App() {
             <ProtectedElement
               mappedPage={
                 <MappedPage
-                  navLinkId={navLinkData.contribute.id}
+                  navLinkIdSetter={() =>
+                    setSelectedNavLinkId(navLinkData.contribute.id)
+                  }
                   bodyElement={<Contribute />}
                 />
               }
@@ -87,7 +91,9 @@ function App() {
             <ProtectedElement
               mappedPage={
                 <MappedPage
-                  navLinkId={navLinkData.leverage.id}
+                  navLinkIdSetter={() =>
+                    setSelectedNavLinkId(navLinkData.leverage.id)
+                  }
                   bodyElement={<Leverage />}
                 />
               }
@@ -100,7 +106,9 @@ function App() {
             <ProtectedElement
               mappedPage={
                 <MappedPage
-                  navLinkId={navLinkData.resources.id}
+                  navLinkIdSetter={() =>
+                    setSelectedNavLinkId(navLinkData.resources.id)
+                  }
                   bodyElement={<Resources />}
                 />
               }
