@@ -32,6 +32,7 @@ const Header = (props) => {
 
   const headerActionButtonDataList = [
     {
+      id: "logout",
       iconComponent: <FiLogOut />,
       clickHandler: onLogout,
     },
@@ -45,35 +46,40 @@ const Header = (props) => {
   }
 
   const renderHeaderActionButtonList = (isLightTheme) => {
-    const headerActionButtonListItems = headerActionButtonDataList.map(
-      (buttonDataItem) => (
-        <HeaderActionButton
-          type="button"
-          onClick={buttonDataItem.clickHandler}
-          isLightTheme={isLightTheme}
-        >
-          <IconContext.Provider
-            value={{
-              style: {
-                height: "2rem",
-                width: "2rem",
-                color: "#ffffff",
-              },
-            }}
+    const headerActionButtonComponentDataList = headerActionButtonDataList.map(
+      (buttonDataItem) => ({
+        id: buttonDataItem.id,
+        actionButtonComponent: (
+          <HeaderActionButton
+            type="button"
+            onClick={buttonDataItem.clickHandler}
+            isLightTheme={isLightTheme}
           >
-            {buttonDataItem.iconComponent}
-          </IconContext.Provider>
-        </HeaderActionButton>
-      )
+            <IconContext.Provider
+              value={{
+                style: {
+                  height: "2rem",
+                  width: "2rem",
+                  color: "#ffffff",
+                },
+              }}
+            >
+              {buttonDataItem.iconComponent}
+            </IconContext.Provider>
+          </HeaderActionButton>
+        ),
+      })
     );
 
     const headerActionButtonListUI = (
       <HeaderActionButtonList>
-        {headerActionButtonListItems.map((actionButtonListItem) => (
-          <HeaderActionButtonListItem>
-            {actionButtonListItem}
-          </HeaderActionButtonListItem>
-        ))}
+        {headerActionButtonComponentDataList.map(
+          (actionButtonComponentDataItem) => (
+            <HeaderActionButtonListItem key={actionButtonComponentDataItem.id}>
+              {actionButtonComponentDataItem.actionButtonComponent}
+            </HeaderActionButtonListItem>
+          )
+        )}
       </HeaderActionButtonList>
     );
 
@@ -90,6 +96,7 @@ const Header = (props) => {
           toggleIsLightTheme,
         } = appContextData;
         headerActionButtonDataList.unshift({
+          id: "appTheme",
           iconComponent: isLightTheme ? (
             <MdOutlineNightlightRound />
           ) : (
