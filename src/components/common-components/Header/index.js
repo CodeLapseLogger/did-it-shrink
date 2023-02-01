@@ -10,6 +10,7 @@ import Cookies from "js-cookie";
 import { FiLogOut } from "react-icons/fi";
 
 import AppContext from "../../../contexts/AppContext";
+import { userLogout } from "../../../appwrite-api/appwrite-api";
 
 import {
   HeaderActionButtonList,
@@ -42,6 +43,7 @@ const Header = (props) => {
     logoutEvent.preventDefault();
 
     Cookies.remove("did-it-shrink-jwt-token");
+    userLogout();
     navigate("/login", { replace: true });
   }
 
