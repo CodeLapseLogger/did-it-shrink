@@ -5,11 +5,7 @@ export const LoginBgContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+  margin: 2rem 3rem;
 `;
 
 export const LoginContentContainer = styled.div`
@@ -17,13 +13,8 @@ export const LoginContentContainer = styled.div`
   justify-content: center;
   align-items: stretch;
   border-radius: 1rem;
-  /* border: 0.1rem solid #959290; */
   box-shadow: 0 0 0.5rem 0 #959290;
-  min-height: 50vh;
-  height: 50%;
-  width: 80%;
   align-self: center;
-  padding: 0;
 `;
 
 export const LoginBrandContentContainer = styled.div`
@@ -34,7 +25,7 @@ export const LoginBrandContentContainer = styled.div`
   width: 55%;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
-  background-image: linear-gradient(to bottom, #f4b991, #b9b7b2);
+  background-image: linear-gradient(to bottom, #d0bf23, #b9b7b2);
   background-size: cover;
   margin: 0;
 `;
@@ -49,7 +40,7 @@ export const LoginFormContentContainer = styled(LoginBrandContentContainer)`
 `;
 
 export const BrandName = styled.h1`
-  color: #f47622;
+  color: #da6618;
   font-family: "Kalam";
   font-size: 3.5rem;
   font-weight: 700;
