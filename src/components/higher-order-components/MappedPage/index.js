@@ -5,7 +5,7 @@ import Header from "../../common-components/Header";
 import Footer from "../../common-components/Footer";
 
 const MappedPage = (props) => {
-  const { navLinkIdSetter, bodyElement } = props;
+  const { navLinkIdSetter = () => {}, bodyElement } = props;
 
   useEffect(() => navLinkIdSetter(), [navLinkIdSetter]);
 
