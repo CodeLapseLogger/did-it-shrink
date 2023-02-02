@@ -62,7 +62,7 @@ export const GreyTextBig = styled.p`
 export const GreyTextMedium = styled(GreyTextBig)`
   font-size: ${(props) => (props.isLabel ? "1.2rem" : "1.5rem")};
   color: ${(props) => (props.isLabel ? "#5e5c5b" : "#ffffff")};
-  margin-bottom: 0.5rem;
+  margin-top: 1rem;
 `;
 
 export const LoginFormContainer = styled.form`
