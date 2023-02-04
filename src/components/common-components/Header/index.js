@@ -11,6 +11,7 @@ import { FiLogOut } from "react-icons/fi";
 
 import AppContext from "../../../contexts/AppContext";
 import { userLogout } from "../../../appwrite-api/appwrite-api";
+import { isAuthenticated } from "../../../utils/Authentication";
 
 import {
   HeaderActionButtonList,
@@ -34,7 +35,7 @@ const Header = (props) => {
   const headerActionButtonDataList = [
     {
       id: "logout",
-      iconComponent: <FiLogOut />,
+      iconComponent: isAuthenticated() && <FiLogOut />,
       clickHandler: onLogout,
     },
   ];
