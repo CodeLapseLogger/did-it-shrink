@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 // Separate object to model error
 // messages and the nested objects
 // is intentional to enable extension
@@ -94,3 +96,9 @@ export function validateFormInput(formData) {
 
   return formInputValidationResults;
 }
+
+export const isAuthenticated = () => {
+  const jwt = Cookies.get("did-it-shrink-jwt-token");
+
+  return jwt !== undefined;
+};
