@@ -39,11 +39,14 @@ const Header = (props) => {
     },
   ];
 
+  let navLinkDataChangeCallback = null;
+
   function onLogout(logoutEvent) {
     logoutEvent.preventDefault();
 
     Cookies.remove("did-it-shrink-jwt-token");
     userLogout();
+    navLinkDataChangeCallback();
     navigate("/login", { replace: true });
   }
 
@@ -93,6 +96,7 @@ const Header = (props) => {
       {(appContextData) => {
         const {
           navLinkData,
+          updateNavLinkData,
           selectedNavLinkId,
           isLightTheme,
           toggleIsLightTheme,
@@ -106,6 +110,8 @@ const Header = (props) => {
           ),
           clickHandler: () => toggleIsLightTheme(!isLightTheme),
         });
+
+        navLinkDataChangeCallback = updateNavLinkData;
 
         return (
           <HeaderBgContainer isLightTheme={isLightTheme}>
