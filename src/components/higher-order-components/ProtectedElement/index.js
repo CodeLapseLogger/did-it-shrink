@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
-import Cookies from "js-cookie";
+
+import { isAuthenticated } from "../../../utils/Authentication";
 
 const ProtectedElement = (props) => {
-  const jwtCookie = Cookies.get("did-it-shrink-jwt-token");
   const { mappedPage } = props;
-  if (jwtCookie === undefined) {
+  if (!isAuthenticated()) {
     return <Navigate to="/login" />;
   }
 
