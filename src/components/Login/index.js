@@ -43,6 +43,8 @@ import {
   AuthReqOutcomeMessage,
 } from "./styledComponents";
 
+import AppContext from "../../contexts/AppContext";
+
 const Login = (props) => {
   const initialFormInputState = {
     userName: "",
@@ -72,6 +74,8 @@ const Login = (props) => {
   let isUserLoggedIn = useRef(false);
 
   const navigate = useNavigate();
+
+  let navLinkDataChangeCallback = null;
 
   useEffect(() => {
     const authToken = Cookies.get("did-it-shrink-jwt-token");
@@ -140,6 +144,7 @@ const Login = (props) => {
               const { jwt } = jwtResponse;
               Cookies.set("did-it-shrink-jwt-token", jwt);
               setAuthStatus("success");
+              navLinkDataChangeCallback();
               navigate("/", { replace: true });
             })
             .catch((jwtError) => {
@@ -231,166 +236,190 @@ const Login = (props) => {
     renderedFinalUI = <Navigate to="/" replace />;
   } else {
     renderedFinalUI = (
-      <LoginBgContainer>
-        <LoginContentContainer>
-          <LoginBrandContentContainer>
-            <BrandName>
-              Did It <BrandNamePartial as="span">Shrink</BrandNamePartial>
-            </BrandName>
-            <GreyTextBig>
-              A crowdsourcing platform for product data and discovering trends
-              like Shrinkflation, Brand Pricing Strategies, and more.
-            </GreyTextBig>
-            <br />
-            <GreyTextMedium>
-              Join to contribute and leverage the collective effort.
-            </GreyTextMedium>
-          </LoginBrandContentContainer>
+      <AppContext.Consumer>
+        {(appContextData) => {
+          const { updateNavLinkData } = appContextData;
+          navLinkDataChangeCallback = updateNavLinkData;
 
-          <LoginFormContentContainer>
-            <LoginFormHeader>{isLogin ? "Login" : "Signup"}</LoginFormHeader>
-            {authStatus === "success" &&
-              getAuthReqOutcomeMessageUI({
-                message: "Signup Success",
-                messageColor: "#9cb82b",
-                messageReactIcon: <BsFillCheckCircleFill />,
-                iconSize: "1.2rem",
-              })}
+          return (
+            <LoginBgContainer>
+              <LoginContentContainer>
+                <LoginBrandContentContainer>
+                  <BrandName>
+                    Did It <BrandNamePartial as="span">Shrink</BrandNamePartial>
+                  </BrandName>
+                  <GreyTextBig>
+                    A crowdsourcing platform for product data and discovering
+                    trends like Shrinkflation, Brand Pricing Strategies, and
+                    more.
+                  </GreyTextBig>
+                  <br />
+                  <GreyTextMedium>
+                    Join to contribute and leverage the collective effort.
+                  </GreyTextMedium>
+                </LoginBrandContentContainer>
 
-            {authStatus === "failure" &&
-              getAuthReqOutcomeMessageUI({
-                message: errorMessages.auth,
-                messageColor: "red",
-                messageReactIcon: <BsXCircleFill />,
-                iconSize: "1.5rem",
-              })}
-            <LoginFormContainer onSubmit={onFormSubmit}>
-              <LoginFormInputsContainer>
-                {!isLogin && (
-                  <>
-                    <LoginFormSingleInputContainer>
-                      <GreyTextMedium as="label" htmlFor="userName" isLabel>
-                        Username
-                      </GreyTextMedium>
-                      <UserInputContainer>
-                        <LoginFormInput
-                          id="userName"
-                          type="text"
-                          name="userName"
-                          value={formUserInput.userName}
-                          placeholder="Type in username..."
-                          onChange={onFormUserInputChange}
-                        />
-                      </UserInputContainer>
-                    </LoginFormSingleInputContainer>
-                    {errorMessages.name && (
-                      <ErrorMessage>{errorMessages.name}</ErrorMessage>
-                    )}
-                  </>
-                )}
+                <LoginFormContentContainer>
+                  <LoginFormHeader>
+                    {isLogin ? "Login" : "Signup"}
+                  </LoginFormHeader>
+                  {authStatus === "success" &&
+                    getAuthReqOutcomeMessageUI({
+                      message: "Signup Success",
+                      messageColor: "#9cb82b",
+                      messageReactIcon: <BsFillCheckCircleFill />,
+                      iconSize: "1.2rem",
+                    })}
 
-                <>
-                  <LoginFormSingleInputContainer>
-                    <GreyTextMedium as="label" htmlFor="userEmail" isLabel>
-                      Email
-                    </GreyTextMedium>
-                    <UserInputContainer>
-                      <LoginFormInput
-                        id="userEmail"
-                        type="email"
-                        name="userEmail"
-                        value={formUserInput.userEmail}
-                        placeholder="Enter your valid email address"
-                        onChange={onFormUserInputChange}
-                      />
-                    </UserInputContainer>
-                  </LoginFormSingleInputContainer>
-                  {errorMessages.email && (
-                    <ErrorMessage>{errorMessages.email}</ErrorMessage>
-                  )}
-                </>
-
-                <>
-                  <LoginFormSingleInputContainer>
-                    <GreyTextMedium as="label" htmlFor="userPassword" isLabel>
-                      Password
-                    </GreyTextMedium>
-                    <UserInputContainer>
-                      <LoginFormInput
-                        id="userPassword"
-                        type={showPassword ? "text" : "password"}
-                        name="userPassword"
-                        value={formUserInput.userPassword}
-                        placeholder="Choose a strong password"
-                        onChange={onFormUserInputChange}
-                        isTypePassword
-                      />
-                      <ToggleShowPasswordButton
-                        type="button"
-                        onClick={onToggleShowPassword}
-                      >
-                        <IconContext.Provider
-                          value={{
-                            style: {
-                              height: "1.5rem",
-                              width: "1.5rem",
-                              color: "#3d3a38",
-                            },
-                          }}
-                        >
-                          {showPassword ? (
-                            <BsFillEyeFill />
-                          ) : (
-                            <BsFillEyeSlashFill />
+                  {authStatus === "failure" &&
+                    getAuthReqOutcomeMessageUI({
+                      message: errorMessages.auth,
+                      messageColor: "red",
+                      messageReactIcon: <BsXCircleFill />,
+                      iconSize: "1.5rem",
+                    })}
+                  <LoginFormContainer onSubmit={onFormSubmit}>
+                    <LoginFormInputsContainer>
+                      {!isLogin && (
+                        <>
+                          <LoginFormSingleInputContainer>
+                            <GreyTextMedium
+                              as="label"
+                              htmlFor="userName"
+                              isLabel
+                            >
+                              Username
+                            </GreyTextMedium>
+                            <UserInputContainer>
+                              <LoginFormInput
+                                id="userName"
+                                type="text"
+                                name="userName"
+                                value={formUserInput.userName}
+                                placeholder="Type in username..."
+                                onChange={onFormUserInputChange}
+                              />
+                            </UserInputContainer>
+                          </LoginFormSingleInputContainer>
+                          {errorMessages.name && (
+                            <ErrorMessage>{errorMessages.name}</ErrorMessage>
                           )}
-                        </IconContext.Provider>
-                      </ToggleShowPasswordButton>
-                    </UserInputContainer>
-                  </LoginFormSingleInputContainer>
+                        </>
+                      )}
 
-                  {errorMessages.password && (
-                    <ErrorMessage>{errorMessages.password}</ErrorMessage>
-                  )}
-                </>
-              </LoginFormInputsContainer>
+                      <>
+                        <LoginFormSingleInputContainer>
+                          <GreyTextMedium
+                            as="label"
+                            htmlFor="userEmail"
+                            isLabel
+                          >
+                            Email
+                          </GreyTextMedium>
+                          <UserInputContainer>
+                            <LoginFormInput
+                              id="userEmail"
+                              type="email"
+                              name="userEmail"
+                              value={formUserInput.userEmail}
+                              placeholder="Enter your valid email address"
+                              onChange={onFormUserInputChange}
+                            />
+                          </UserInputContainer>
+                        </LoginFormSingleInputContainer>
+                        {errorMessages.email && (
+                          <ErrorMessage>{errorMessages.email}</ErrorMessage>
+                        )}
+                      </>
 
-              <LoginFormButton
-                type="submit"
-                disabled={isProcessingAuthRequest}
-                isProcessingAuthRequest={isProcessingAuthRequest}
-              >
-                {isProcessingAuthRequest &&
-                  getStyledOvalSpinnerComponent({
-                    height: 25,
-                    width: 25,
-                    color: "white",
-                    secondaryColor: "#c3ad3e",
-                    wrapperStyle: {
-                      marginRight: "0.5rem",
-                    },
-                  })}
-                {getSubmitButtonText()}
-              </LoginFormButton>
+                      <>
+                        <LoginFormSingleInputContainer>
+                          <GreyTextMedium
+                            as="label"
+                            htmlFor="userPassword"
+                            isLabel
+                          >
+                            Password
+                          </GreyTextMedium>
+                          <UserInputContainer>
+                            <LoginFormInput
+                              id="userPassword"
+                              type={showPassword ? "text" : "password"}
+                              name="userPassword"
+                              value={formUserInput.userPassword}
+                              placeholder="Choose a strong password"
+                              onChange={onFormUserInputChange}
+                              isTypePassword
+                            />
+                            <ToggleShowPasswordButton
+                              type="button"
+                              onClick={onToggleShowPassword}
+                            >
+                              <IconContext.Provider
+                                value={{
+                                  style: {
+                                    height: "1.5rem",
+                                    width: "1.5rem",
+                                    color: "#3d3a38",
+                                  },
+                                }}
+                              >
+                                {showPassword ? (
+                                  <BsFillEyeFill />
+                                ) : (
+                                  <BsFillEyeSlashFill />
+                                )}
+                              </IconContext.Provider>
+                            </ToggleShowPasswordButton>
+                          </UserInputContainer>
+                        </LoginFormSingleInputContainer>
 
-              <LoginFormHorizontalLine />
+                        {errorMessages.password && (
+                          <ErrorMessage>{errorMessages.password}</ErrorMessage>
+                        )}
+                      </>
+                    </LoginFormInputsContainer>
 
-              <SignupContainer>
-                <SignupMessage>
-                  {isLogin ? "New user ?" : "Already signed up ?"}
-                </SignupMessage>
-                <LoginFormButton
-                  type="button"
-                  onClick={toggleSignup}
-                  disabled={isProcessingAuthRequest}
-                  isOutline
-                >
-                  {isLogin ? "Signup" : "Login"}
-                </LoginFormButton>
-              </SignupContainer>
-            </LoginFormContainer>
-          </LoginFormContentContainer>
-        </LoginContentContainer>
-      </LoginBgContainer>
+                    <LoginFormButton
+                      type="submit"
+                      disabled={isProcessingAuthRequest}
+                      isProcessingAuthRequest={isProcessingAuthRequest}
+                    >
+                      {isProcessingAuthRequest &&
+                        getStyledOvalSpinnerComponent({
+                          height: 25,
+                          width: 25,
+                          color: "white",
+                          secondaryColor: "#c3ad3e",
+                          wrapperStyle: {
+                            marginRight: "0.5rem",
+                          },
+                        })}
+                      {getSubmitButtonText()}
+                    </LoginFormButton>
+
+                    <LoginFormHorizontalLine />
+
+                    <SignupContainer>
+                      <SignupMessage>
+                        {isLogin ? "New user ?" : "Already signed up ?"}
+                      </SignupMessage>
+                      <LoginFormButton
+                        type="button"
+                        onClick={toggleSignup}
+                        disabled={isProcessingAuthRequest}
+                        isOutline
+                      >
+                        {isLogin ? "Signup" : "Login"}
+                      </LoginFormButton>
+                    </SignupContainer>
+                  </LoginFormContainer>
+                </LoginFormContentContainer>
+              </LoginContentContainer>
+            </LoginBgContainer>
+          );
+        }}
+      </AppContext.Consumer>
     );
   }
 
