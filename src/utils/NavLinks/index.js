@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+import { isAuthenticated } from "../Authentication";
 
 const authenticatedPageNavLinkData = {
   home: {
@@ -42,11 +42,9 @@ const unauthenticatedPageNavLinkData = {
 };
 
 export const getPageNavLinkData = () => {
-  const jwt = Cookies.get("did-it-shrink-jwt-token");
-  const pageNavLinkData =
-    jwt === undefined
-      ? unauthenticatedPageNavLinkData
-      : authenticatedPageNavLinkData;
+  const pageNavLinkData = isAuthenticated()
+    ? authenticatedPageNavLinkData
+    : unauthenticatedPageNavLinkData;
 
   return pageNavLinkData;
 };
