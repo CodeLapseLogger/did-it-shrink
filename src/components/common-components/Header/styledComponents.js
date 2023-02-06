@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 export const HeaderBgContainer = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props) =>
+    props.isAuthenticated ? "space-between" : "flex-end"};
   align-items: center;
   width: 100%;
   padding: 1rem 2rem;
