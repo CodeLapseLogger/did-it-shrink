@@ -16,6 +16,7 @@ import { IconContext } from "react-icons";
 import { MdOutlineCopyright } from "react-icons/md";
 
 import AppContext from "../../../contexts/AppContext";
+import { isAuthenticated } from "../../../utils/Authentication";
 
 const Footer = (props) => {
   return (
@@ -25,12 +26,13 @@ const Footer = (props) => {
 
         return (
           <FooterBgContainer>
-            <StyledLink to={navLinkData.home.navRoute}>
-              <BrandName as="p">
-                Did It <BrandNamePartial as="span">Shrink</BrandNamePartial>
-              </BrandName>
-            </StyledLink>
-
+            {isAuthenticated() && (
+              <StyledLink to={navLinkData.home.navRoute}>
+                <BrandName as="p">
+                  Did It <BrandNamePartial as="span">Shrink</BrandNamePartial>
+                </BrandName>
+              </StyledLink>
+            )}
             <FooterText>
               Did It Shrink
               <IconContext.Provider
