@@ -13,6 +13,7 @@ import Contribute from "./components/Contribute";
 import Leverage from "./components/Leverage";
 import Resources from "./components/Resources";
 import NotFound from "./components/NotFound";
+import JoinNow from "./components/JoinNow";
 
 import { getPageNavLinkData } from "./utils/NavLinks";
 
@@ -46,19 +47,32 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedElement
-              mappedPage={
-                <MappedPage
-                  navLinkIdSetter={() =>
-                    setSelectedNavLinkId(navLinkData.home.id)
-                  }
-                  bodyElement={<Home />}
-                />
-              }
+            <MappedPage
+              navLinkIdSetter={() => setSelectedNavLinkId(navLinkData.home.id)}
+              bodyElement={<Home />}
             />
           }
         />
-        <Route path="login" element={<MappedPage bodyElement={<Login />} />} />
+        <Route
+          path="login"
+          element={
+            <MappedPage
+              navLinkIdSetter={() => setSelectedNavLinkId(navLinkData.login.id)}
+              bodyElement={<Login />}
+            />
+          }
+        />
+        <Route
+          path="join-now"
+          element={
+            <MappedPage
+              navLinkIdSetter={() =>
+                setSelectedNavLinkId(navLinkData.joinNow.id)
+              }
+              bodyElement={<JoinNow />}
+            />
+          }
+        />
         <Route
           path="contribute"
           element={
