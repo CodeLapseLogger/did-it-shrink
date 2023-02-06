@@ -115,12 +115,17 @@ const Header = (props) => {
         navLinkDataChangeCallback = updateNavLinkData;
 
         return (
-          <HeaderBgContainer isLightTheme={isLightTheme}>
-            <StyledLinkComponent to="/">
-              <BrandName as="p">
-                Did It <BrandNamePartial as="span">Shrink</BrandNamePartial>
-              </BrandName>
-            </StyledLinkComponent>
+          <HeaderBgContainer
+            isLightTheme={isLightTheme}
+            isAuthenticated={isAuthenticated()}
+          >
+            {isAuthenticated() && (
+              <StyledLinkComponent to="/">
+                <BrandName as="p">
+                  Did It <BrandNamePartial as="span">Shrink</BrandNamePartial>
+                </BrandName>
+              </StyledLinkComponent>
+            )}
             <HeaderMenuAndActionButtonsContainer>
               <HeaderMenuContainer>
                 {Object.values(navLinkData).map((navLinkDataItem) => {
