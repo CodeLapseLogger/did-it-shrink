@@ -1,9 +1,10 @@
 import Cookies from "js-cookie";
 
-// Separate object to model error
-// messages and the nested objects
-// is intentional to enable extension
-// of error checks in the future.
+// Separate objects to model error,
+// success, req processing messages
+// and the nested objects is intentional
+// to enable extension of error checks
+// in the future.
 const errorMessages = {
   generic: {
     emptyField: "*Required Field",
@@ -14,6 +15,15 @@ const errorMessages = {
   password: {
     length: "*Password should be >= 8 characters",
   },
+};
+
+const successMessages = {
+  userRegistration: "Registration Successful",
+};
+
+const reqProcessingMessages = {
+  redirect: "Redirecting...",
+  loading: "Loading...",
 };
 
 // Function to validate single user input.
@@ -102,3 +112,15 @@ export const isAuthenticated = () => {
 
   return jwt !== undefined;
 };
+
+export function getUserRegistrationSuccessMessage() {
+  return successMessages.userRegistration;
+}
+
+export function getRedirectMessage() {
+  return reqProcessingMessages.redirect;
+}
+
+export function getLoaderMessage() {
+  return reqProcessingMessages.loading;
+}
