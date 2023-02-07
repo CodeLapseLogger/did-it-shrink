@@ -45,8 +45,11 @@ import {
 } from "./styledComponents";
 
 import AppContext from "../../../contexts/AppContext";
+import { isAuthenticated } from "../../../utils/Authentication";
 
 const Auth = (props) => {
+  const navigate = useNavigate();
+
   const { isLogin } = props;
   const initialFormInputState = {
     userName: "",
@@ -73,18 +76,20 @@ const Auth = (props) => {
   const [errorMessages, setErrorMessages] = useState(initialErrorMessagesState);
   let isUserLoggedIn = useRef(false);
 
-  const navigate = useNavigate();
-
   let navLinkDataChangeCallback = null;
 
   useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/");
+    }
+
     const authToken = Cookies.get("did-it-shrink-jwt-token");
     if (authToken !== undefined) {
       isUserLoggedIn.current = true;
     }
 
     setIsInitialLoad(false);
-  }, [authStatus]);
+  }, [authStatus, navigate]);
 
   // Form user input change event handler
   // to access updated form user input and
