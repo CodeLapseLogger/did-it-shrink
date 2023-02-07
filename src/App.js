@@ -32,8 +32,10 @@ function App() {
     setNavLinkData(currentNavLinkData);
   };
 
-  const getNavLinkIdSetter = (navLinkData = {}) =>
-    navLinkData ? () => setSelectedNavLinkId(navLinkData.id) : () => {};
+  const getNavLinkIdSetter =
+    (navLinkData = {}) =>
+    () =>
+      setSelectedNavLinkId(navLinkData.id ? navLinkData.id : "");
 
   return (
     <AppContext.Provider
@@ -115,7 +117,12 @@ function App() {
         />
         <Route
           path="not-found"
-          element={<MappedPage bodyElement={<NotFound />} />}
+          element={
+            <MappedPage
+              navLinkIdSetter={getNavLinkIdSetter()}
+              bodyElement={<NotFound />}
+            />
+          }
         />
         <Route path="*" element={<Navigate to="not-found" />} />
       </Routes>
