@@ -32,6 +32,9 @@ function App() {
     setNavLinkData(currentNavLinkData);
   };
 
+  const getNavLinkIdSetter = (navLinkData = {}) =>
+    navLinkData ? () => setSelectedNavLinkId(navLinkData.id) : () => {};
+
   return (
     <AppContext.Provider
       value={{
@@ -48,7 +51,7 @@ function App() {
           path="/"
           element={
             <MappedPage
-              navLinkIdSetter={() => setSelectedNavLinkId(navLinkData.home.id)}
+              navLinkIdSetter={getNavLinkIdSetter(navLinkData.home)}
               bodyElement={<Home />}
             />
           }
@@ -57,7 +60,7 @@ function App() {
           path="login"
           element={
             <MappedPage
-              navLinkIdSetter={() => setSelectedNavLinkId(navLinkData.login.id)}
+              navLinkIdSetter={getNavLinkIdSetter(navLinkData.login)}
               bodyElement={<Login />}
             />
           }
@@ -66,9 +69,7 @@ function App() {
           path="join-now"
           element={
             <MappedPage
-              navLinkIdSetter={() =>
-                setSelectedNavLinkId(navLinkData.joinNow.id)
-              }
+              navLinkIdSetter={getNavLinkIdSetter(navLinkData.joinNow)}
               bodyElement={<JoinNow />}
             />
           }
@@ -79,9 +80,7 @@ function App() {
             <ProtectedElement
               mappedPage={
                 <MappedPage
-                  navLinkIdSetter={() =>
-                    setSelectedNavLinkId(navLinkData.contribute.id)
-                  }
+                  navLinkIdSetter={getNavLinkIdSetter(navLinkData.contribute)}
                   bodyElement={<Contribute />}
                 />
               }
@@ -94,9 +93,7 @@ function App() {
             <ProtectedElement
               mappedPage={
                 <MappedPage
-                  navLinkIdSetter={() =>
-                    setSelectedNavLinkId(navLinkData.leverage.id)
-                  }
+                  navLinkIdSetter={getNavLinkIdSetter(navLinkData.leverage)}
                   bodyElement={<Leverage />}
                 />
               }
@@ -109,9 +106,7 @@ function App() {
             <ProtectedElement
               mappedPage={
                 <MappedPage
-                  navLinkIdSetter={() =>
-                    setSelectedNavLinkId(navLinkData.resources.id)
-                  }
+                  navLinkIdSetter={getNavLinkIdSetter(navLinkData.resources)}
                   bodyElement={<Resources />}
                 />
               }
@@ -120,11 +115,7 @@ function App() {
         />
         <Route
           path="not-found"
-          element={
-            <ProtectedElement
-              mappedPage={<MappedPage bodyElement={<NotFound />} />}
-            />
-          }
+          element={<MappedPage bodyElement={<NotFound />} />}
         />
         <Route path="*" element={<Navigate to="not-found" />} />
       </Routes>
