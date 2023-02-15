@@ -5,15 +5,17 @@ export const BenefitsSectionContainer = styled(HomeSectionContainer2)`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: ${(props) => props.sectionHeight ?? "auto"};
 `;
 
 export const BenefitsHeader = styled.h1`
-  color: white;
+  color: #f1dc68;
   font-family: "Montserrat";
   font-size: 3.5rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
+  border: 0.5rem inset #84680b;
+  padding: 0.75rem 1.25rem;
+  background-color: #a08016;
 `;
 
 export const BenefitsList = styled.ul`
@@ -39,4 +41,5 @@ export const BenefitName = styled.p`
   font-size: 1.2rem;
   font-weight: 500;
   margin-top: 0.5rem;
+  color: #faed7b;
 `;
