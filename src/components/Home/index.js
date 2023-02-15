@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../../utils/Authentication";
 import { imageData } from "../../assets/images/ImageData";
+import BenefitsSection from "./BenefitsSection";
 
 import {
   CallToActionButton,
@@ -39,7 +40,7 @@ const Home = (props) => {
 
   return (
     <HomeBgContainer>
-      <HomeSectionContainer1 sectionHeight="60vh">
+      <HomeSectionContainer1>
         <HomeSectionContent>
           <HomeSectionHeader1>
             CROWD SOURCING PLATFORM FOR PRODUCT DATA
@@ -76,10 +77,7 @@ const Home = (props) => {
           </HomeSectionImageAttributionContainer>
         </HomeSectionImageContainer>
       </HomeSectionContainer1>
-      <HomeSectionContainer2>
-        <HomeSectionContent></HomeSectionContent>
-        <HomeSectionImageContainer></HomeSectionImageContainer>
-      </HomeSectionContainer2>
+      <BenefitsSection />
       <HomeSectionContainer1>
         <HomeSectionContent></HomeSectionContent>
         <HomeSectionImageContainer></HomeSectionImageContainer>
