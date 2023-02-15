@@ -12,7 +12,7 @@ export const HomeSectionContainer1 = styled.section`
   display: flex;
   justify-content: center;
   padding: 1.5rem;
-  height: ${(props) => props.sectionHeight};
+  height: ${(props) => props.sectionHeight ?? "60vh"};
 `;
 
 export const HomeSectionContainer2 = styled(HomeSectionContainer1)`
@@ -35,7 +35,6 @@ export const HomeSectionImageContainer = styled(HomeSectionContent)`
   background-position: center;
   background-repeat: no-repeat;
   justify-content: flex-end;
-  /* padding: 1rem; */
 `;
 
 export const HomeSectionImageAttributionContainer = styled.div`
@@ -60,7 +59,7 @@ export const HomeSectionImageAttributionContent = styled.span`
 export const HomeSectionHeader1 = styled.h1`
   color: #323131;
   font-family: "Montserrat";
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   text-align: start;
