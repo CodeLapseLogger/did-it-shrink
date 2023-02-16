@@ -12,6 +12,11 @@ export const BackgroundImageContainer = styled.div`
   background-color: inherit;
   background-position: center;
   background-repeat: no-repeat;
+  border: 0.5rem #b3911a;
+  border-top-style: outset;
+  border-right-style: groove;
+  border-bottom-style: outset;
+  border-left-style: ridge;
 `;
 
 export const BackgroundImageAttributionContainer = styled.div`
