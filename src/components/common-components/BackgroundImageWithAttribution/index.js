@@ -36,10 +36,15 @@ import {
 // styled component will be set to some default values when the
 // above mentioned props are not passed in during instantiation.
 const BackgroundImageWithAttribution = (props) => {
-  const { bgImageData } = props;
+  const { bgImageData, bgImgWidth, bgImgHeight, containerWidth } = props;
 
   return (
-    <BackgroundImageContainer bgImageUrl={bgImageData.bgImageUrl}>
+    <BackgroundImageContainer
+      bgImageUrl={bgImageData.bgImageUrl}
+      bgImgWidth={bgImgWidth}
+      bgImgHeight={bgImgHeight}
+      containerWidth={containerWidth}
+    >
       <BackgroundImageAttributionContainer>
         <BackgroundImageAttributionContent
           textColor={bgImageData.imageAttributionTextColor}
