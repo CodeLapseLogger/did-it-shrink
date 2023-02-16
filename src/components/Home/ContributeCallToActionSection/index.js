@@ -33,7 +33,10 @@ const ContributeCallToActionSection = (props) => {
           DO IT NOW
         </CallToActionButton>
       </HomeSectionContent>
-      <BackgroundImageWithAttribution bgImageData={sectionImageData} />
+      <BackgroundImageWithAttribution
+        bgImageData={sectionImageData}
+        bgImgHeight="88%"
+      />
     </HomeSectionContainer1>
   );
 };
